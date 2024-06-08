@@ -8,28 +8,17 @@ use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
 use App\Models\User;
+
 class FortifyServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
     public function register()
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
     public function boot()
     {
         Fortify::createUsersUsing(CreateNewUser::class);
@@ -53,17 +42,6 @@ class FortifyServiceProvider extends ServiceProvider
             if ($user) {
                 return $user;
             }
-        });
-
-        Fortify::registerView(function () {
-            return view('auth.register');
-        });
-
-        Fortify::validateRegistration(function (array $input) {
-            Validator::make($input, [
-                'mobile_phone' => ['required', 'string', 'max:255', 'unique:users'],
-
-            ])->validate();
         });
     }
 }
