@@ -16,13 +16,13 @@ class AuthController extends Controller
             'unique' => 'انت مسجل من قبل',
           ];
 
-            $fileds=$req->validate([
-                'name'=>'required|string',
-                'mobile_phone'=>'required|numeric|digits:11|unique:users',
-                'mobile_father'=>'required|numeric|digits:11|unique:users',
-                'device_id'=>'required|string',
-                'year_type'=>'required'
-            ],$messages);
+            // $fileds=$req->validate([
+            //     'name'=>'required|string',
+            //     'mobile_phone'=>'required|numeric|digits:11|unique:users',
+            //     'mobile_father'=>'required|numeric|digits:11|unique:users',
+            //     'device_id'=>'required|string',
+            //     'year_type'=>'required'
+            // ],$messages);
 
             if(User::where('mobile_phone',$req->mobile_phone)->exists()||User::where('device_id',$req->device_id)->exists()){
                 return response(
@@ -73,13 +73,13 @@ public function login(Request $req){
         , 200);
     }
 
- 
+
     if ($user->device_id == null) {
         // Update the user's device_id with the one from the request
         $user->device_id = $req->device_id;
         $user->save();
     }
-       
+
         // Check if the device_id from the request matches the user's device_id
         if ($user->device_id != $req->device_id) {
             return response(
@@ -88,7 +88,7 @@ public function login(Request $req){
                  'data' => null]
             , 200);
         }
-   
+
 
     $token = $user->createToken('myapptoken')->plainTextToken;
 
