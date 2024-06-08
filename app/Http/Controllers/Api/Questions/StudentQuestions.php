@@ -29,6 +29,7 @@ class StudentQuestions extends Controller
             'unit_id' => 'required',
             'user_id' => 'required',
             'content' => 'required',
+            'year_type' => 'year_type',
         ]);
 
         try {
@@ -37,7 +38,7 @@ class StudentQuestions extends Controller
             $studentQuestion->unit_id = $validatedData['unit_id'];
             $studentQuestion->user_id = $validatedData['user_id'];
             $studentQuestion->content = $validatedData['content'];
-
+            $studentQuestion->year_type = $validatedData['year_type'];
             // Save the question to the database
             $studentQuestion->save();
 
