@@ -18,10 +18,9 @@ class CreateStudentQuestionsTable extends Migration
             $table->text('content');
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
-            
             $table->bigInteger('unit_id')->unsigned()->nullable();
             $table->foreign('unit_id')->references('id')->on('units')->onDelete('set null');
-            
+
             $table->timestamps();
         });
     }
