@@ -46,15 +46,23 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
 
-
         Fortify::authenticateUsing(function (Request $request) {
             $user = User::where('mobile_phone', $request->mobile_phone)->first();
 
             if ($user) {
                 return $user;
-
-            } 
+            }
         });
 
+        Fortify::registerView(function () {
+            return view('auth.register');
+        });
+
+        Fortify::validateRegistration(function (array $input) {
+            Validator::make($input, [
+                'mobile_phone' => ['required', 'string', 'max:255', 'unique:users'],
+
+            ])->validate();
+        });
     }
 }
