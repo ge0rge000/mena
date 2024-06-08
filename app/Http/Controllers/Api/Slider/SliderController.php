@@ -19,8 +19,8 @@ class SliderController extends Controller
             ];
         });
 
-        return response([
+        return response(
             $data
-        ], 200);
+        , 200);
     }
 }
