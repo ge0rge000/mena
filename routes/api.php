@@ -74,3 +74,5 @@ Route::get('student_choices/{id_user}/{id_exam}',[ResultFinalComponent::class,'g
     Route::get('/student/answers/{exam_id}/{user_id}', [StudentAnswers::class,'show']);
 
     Route::get('lecture/{id}',[LectureController::class,'show']);
+
+    Route::get("examed_test/{id_user}",[ResultFinalComponent::class,'getResult']);
