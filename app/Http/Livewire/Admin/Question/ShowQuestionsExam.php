@@ -37,10 +37,10 @@ class ShowQuestionsExam extends Component
     public function render()
 
     {
-        $questions=QuestionChoice::where("exam_id",$this->id_exam)->where("type","normal")->with('trueanswer')->get();
- 
- 
- 
+        $questions=QuestionChoice::where("exam_id",$this->id_exam)->with('trueanswer')->get();
+
+
+
 
         $exam=Exam::where("id",$this->id_exam)->first();
         return view('livewire.admin.question.show-questions-exam',['questions'=>$questions,

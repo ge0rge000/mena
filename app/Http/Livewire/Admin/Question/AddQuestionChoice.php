@@ -21,8 +21,9 @@ class AddQuestionChoice extends Component
     public $block_id;
 
     public function mount($id_exam){
+
      $this->id_exam;
-     $this->type;
+     $this->type=$this->type;
     }
     protected $rules = [
         'question' => 'required',
@@ -43,14 +44,9 @@ class AddQuestionChoice extends Component
         $question->b=$this->b;
         $question->c=$this->c;
         $question->d=$this->d;
-         $question->type=$this->type;
 
         $question->mark_question=$this->mark_question;
-        if($this->type=="block"){
-            $question->type="block";
 
-            $question->block_id=$this->block_id;
-        }
         $question->save();
 
         $question_id = QuestionChoice::latest()->first()->id;

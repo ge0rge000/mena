@@ -14,7 +14,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-                <h4 class="card-title">exam relate to {{ $exam->year_type }} year</h4>
+                <h4 class="card-title">exam relate to {{ $exam->year_    }} year</h4>
 
               <h4 class="card-title">questions relate to {{ $exam->name_exam }}</h4>
 
@@ -72,8 +72,8 @@
               </div>
 
             </div>
-           
-           
+
+
           </div>
         </div>
       </div>
