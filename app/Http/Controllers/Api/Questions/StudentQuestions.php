@@ -30,6 +30,7 @@ class StudentQuestions extends Controller
             'user_id' => 'required',
             'content' => 'required',
             'year_type' => 'required',
+            'answer' => 'required',
         ]);
 
         try {
@@ -39,6 +40,8 @@ class StudentQuestions extends Controller
             $studentQuestion->user_id = $validatedData['user_id'];
             $studentQuestion->content = $validatedData['content'];
             $studentQuestion->year_type = $validatedData['year_type'];
+            $studentQuestion->answer = $validatedData['answer'];
+
             // Save the question to the database
             $studentQuestion->save();
 
