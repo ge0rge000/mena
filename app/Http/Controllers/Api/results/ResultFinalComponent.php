@@ -47,6 +47,7 @@ class ResultFinalComponent extends Controller
             $examResults[] = [
                 'name_exam' => $exam->name_exam,
                 'result' => $result->result,
+                'time_exam'=>$result->created_at,
                 'questions' => $questionsDetails
             ];
         }
