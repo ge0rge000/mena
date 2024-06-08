@@ -38,6 +38,10 @@ class ResultFinalComponent extends Controller
                     $questionsDetails[] = [
                         'question_id' => $question->id,
                         'question_text' => $question->question,
+                        'a' => $question->a,
+                        'b' => $question->b,
+                        'c' => $question->c,
+                        'd' => $question->d,
                         'selected_choice' => $choice['choice'],
                         'correct_choice' => $trueAnswer->ans
                     ];
