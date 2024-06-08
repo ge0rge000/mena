@@ -36,41 +36,12 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
 
-        // Customize authentication logic
         Fortify::authenticateUsing(function (Request $request) {
             $user = User::where('mobile_phone', $request->mobile_phone)->first();
 
             if ($user) {
-                // Add your custom authentication logic here if needed
-                // For example, you might want to verify an OTP instead of a password
-                // if (Hash::check($request->password, $user->password)) {
-                    return $user;
-                // }
+                return $user;
             }
-
-            // If authentication fails
-            return null;
-        });
-
-        // Customize the login validation
-        Fortify::loginView(function () {
-            return view('auth.login');
-        });
-
-        Fortify::authenticateThrough(function (Request $request) {
-            return array_filter([
-                function (Request $request) {
-                    Validator::make($request->all(), [
-                        'mobile_phone' => ['required', 'string'],
-                        // Remove the password validation rule
-                    ])->validate();
-
-                    return true;
-                },
-                Fortify::ensureLoginIsNotRateLimited(),
-                Fortify::attemptToAuthenticate(),
-                Fortify::ensureTwoFactorAuthenticationIsEnabled(),
-            ]);
         });
     }
 }
