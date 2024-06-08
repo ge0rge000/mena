@@ -105,7 +105,7 @@ Route::get('/home-contact',ContactHome::class)->name("home_contact");
   Route::get('/home_admin',HomeController::class)->name("home_admin");
 
 ///for admin
-Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
+
   ///unit
 
   Route::get('showunits',UnitShowComonent::class)->name("show_unit");
@@ -194,7 +194,6 @@ Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
   Route::get('lectures', LectureIndex::class)->name('lecture_index');
   Route::get('lectures/content/{id}', LectureShow::class)->name('lecture_show');
 
-});
 
 
 Route::get('/video', [UploadController::class, 'index']);
