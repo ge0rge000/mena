@@ -47,10 +47,10 @@ Route::get('student/{id_user}',[ResultFinalComponent::class,'getResult']);
 Route::get('student_choices/{id_user}/{id_exam}',[ResultFinalComponent::class,'getResult']);
 
 
-  
+
     Route::get('getunits/{year}',[GetUnitComponent::class,'getcategory']);
     Route::get('videomena/{month}/{year_type}/{id_user}',[VideosShowComponent::class,'checkvalidate']);
-    Route::get('exams/{year_type}',[ExamController::class,'returnexams']);
+    Route::get('exams_return/{year_type}/{id_student}',[ExamController::class,'returnexams']);
     Route::get('questions/{id_exam}',[Questions::class,'returnquestions']);
     Route::get('validatepass/{exam_id}/{password}',[GetvalidatePassword::class,'validatepassword']);
     Route::post('resultchoice',[ResultComponent::class,'checkanswerchoice']);

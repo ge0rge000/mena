@@ -13,14 +13,14 @@ class ExamController extends Controller
     {
 
         $exams = Exam::where("year_type", $year_type)->where('show_exam', 1)->get();
-        
+
         $exams_done = ChoiceResult::where("user_id", $id_student)->pluck('exam_id')->toArray();
-        
+
         // Filter exams that are not in the exams_done list
         $available_exams = $exams->filter(function ($exam) use ($exams_done) {
             return !in_array($exam->id, $exams_done);
         });
-        
+
         return response($available_exams->values(), 200);
     }
 
