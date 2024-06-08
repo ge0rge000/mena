@@ -31,7 +31,6 @@ class ResultFinalComponent extends Controller
             $questionsDetails = [];
 
             foreach ($result->choices as $choice) {
-                    dd($choice);
                 $question = QuestionChoice::find($choice['question_id']);
                 $trueAnswer = TrueAnswer::where('question_id', $choice['question_id'])->first();
 
