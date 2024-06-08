@@ -61,7 +61,7 @@ Route::get('student/{id_user}',[ResultFinalComponent::class,'getResult']);
     //Post & get Student Question & answers
     Route::post('student-questions', [StudentQuestions::class, 'store']);
     Route::get('/student-questions/{unit_id}', [StudentQuestions::class, 'index']);
-    Route::get('/student-questions/show/{user_id}', [StudentQuestions::class, 'show']);
+    Route::get('/student-questions/show/{year_type}', [StudentQuestions::class, 'show']);
     // answers [get answer of specific question - store answers ]
     Route::apiResource('/question/answers', QuestionAnswers::class);
 
