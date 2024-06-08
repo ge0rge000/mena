@@ -37,7 +37,7 @@ class ResultFinalComponent extends Controller
                 if ($question && $trueAnswer) {
                     $questionsDetails[] = [
                         'question_id' => $question->id,
-                        'question_text' => $question->text,
+                        'question_text' => $question->question,
                         'selected_choice' => $choice['choice'],
                         'correct_choice' => $trueAnswer->ans
                     ];
