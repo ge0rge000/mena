@@ -60,8 +60,7 @@ class StudentQuestions extends Controller
 
     public function show(Request $request)
     {
-       $user=User::where('id',$request->id)->first();
-       $year=$user->year_type;
+        $Qquestions=StudentQuestion::where('year_type',$request->year_type)->get(); 
     }
 
 
