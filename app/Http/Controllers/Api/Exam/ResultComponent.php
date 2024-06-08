@@ -19,7 +19,7 @@ class ResultComponent extends Controller
 
                 $data=ChoiceResult::create(
                     [
-                       'choices' => $choicestudent,
+                       'choices' => $request->get('choices'),
                        'exam_id' =>$request->get('exam_id'),
                        'user_id' => $request->get('user_id'),
                        'result' => 0,
