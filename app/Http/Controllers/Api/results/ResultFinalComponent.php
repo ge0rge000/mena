@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\Results;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ChoiceResult;
-use App\Models\Question;
+use App\Models\QuestionChoice;
 use App\Models\TrueAnswer;
 
 class ResultFinalComponent extends Controller
@@ -31,7 +31,8 @@ class ResultFinalComponent extends Controller
             $questionsDetails = [];
 
             foreach ($result->choices as $choice) {
-                $question = ChoiceResult::find($choice['question_id']);
+                    dd($choice);
+                $question = QuestionChoice::find($choice['question_id']);
                 $trueAnswer = TrueAnswer::where('question_id', $choice['question_id'])->first();
 
                 if ($question && $trueAnswer) {
@@ -51,13 +52,6 @@ class ResultFinalComponent extends Controller
             ];
         }
 
-        return response(
-            [
-                'message' => "Exams with results are retrieved.",
-                'status' => true,
-                'exams' => $examResults
-            ],
-            200
-        );
+        return response($examResults);
     }
 }
