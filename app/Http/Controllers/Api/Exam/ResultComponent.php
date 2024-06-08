@@ -17,11 +17,18 @@ class ResultComponent extends Controller
 
             if($request->get('choices')==null){
 
+                $data=ChoiceResult::create(
+                    [
+                       'choices' => $choicestudent,
+                       'exam_id' =>$request->get('exam_id'),
+                       'user_id' => $request->get('user_id'),
+                       'result' => 0,
+                   ]
+                   );
                 return response(
-                    [ 'message'=>"no choice contain",
-                     'status'=> false,
-                     'data'=> null]
+                    ['result'=>$data->result]
                 ,200);
+
 
             }else{
             if(ChoiceResult::where("exam_id", $request->get('exam_id'))->where("user_id", $request->get('user_id'))->exists()) {
@@ -34,28 +41,28 @@ class ResultComponent extends Controller
 
                 $choices = $request->get('choices');
                 $result=0;
-                 
+
          foreach ($choices as $key => $choice) {
-    // Append a new element to choicestudent
+
     $choicestudent[] = ["question_id" => $key, "choice" => $choice];
-   
+
     // Get the true answer
     $choice_true = TrueAnswer::where('question_id', $key)->first();
-    
+
     if ($choice_true != null) {
         $true_choice = $choice_true->ans;
-            
+
         if ($true_choice == $choice) {
-           
-      
-            
+
+
+
             // Update the result
             $result += $choice_true->question->mark_question;
         }
     }
 }
 
-                  
+
              $data=ChoiceResult::create(
              [
                 'choices' => $choicestudent,
@@ -64,11 +71,11 @@ class ResultComponent extends Controller
                 'result' => $result,
             ]
             );
-
-            }
             return response(
                 ['result'=>$data->result]
             ,200);
+
+            }
 
     }
 }
