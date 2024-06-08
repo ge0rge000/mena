@@ -1,7 +1,7 @@
 <div> 
 
     <!-- Carousel Start -->
-    <div class="container-fluid p-0 mb-5">
+    <div class="ccontainer-fluid p-0 mb-5">
         <div class="owl-carousel header-carousel position-relative">
             <div class="owl-carousel-item position-relative">
                 <img class="img-fluid" src="{{asset('home/img/carousel-1.jpg')}}" alt="">
