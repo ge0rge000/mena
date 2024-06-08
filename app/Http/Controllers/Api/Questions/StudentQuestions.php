@@ -29,7 +29,7 @@ class StudentQuestions extends Controller
             'unit_id' => 'required',
             'user_id' => 'required',
             'content' => 'required',
-            'year_type' => 'year_type',
+            'year_type' => 'required',
         ]);
 
         try {
