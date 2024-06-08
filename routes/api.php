@@ -44,8 +44,6 @@ Route::get('sliders',[SliderController::class,'slider']);
 
 Route::get('student/{id_user}',[ResultFinalComponent::class,'getResult']);
 
-Route::get('student_choices/{id_user}/{id_exam}',[ResultFinalComponent::class,'getResult']);
-
 
 
     Route::get('getunits/{year}',[GetUnitComponent::class,'getcategory']);
@@ -75,4 +73,4 @@ Route::get('student_choices/{id_user}/{id_exam}',[ResultFinalComponent::class,'g
 
     Route::get('lecture/{id}',[LectureController::class,'show']);
 
-    Route::get("examed_test/{id_user}",[ResultFinalComponent::class,'getResult']);
+
