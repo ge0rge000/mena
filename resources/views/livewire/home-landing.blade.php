@@ -1,7 +1,7 @@
-<div> 
+<div>
 
     <!-- Carousel Start -->
-    <div class="ccontainer-fluid p-0 mb-5">
+    <div class="container-fluid p-0 mb-5">
         <div class="owl-carousel header-carousel position-relative">
             <div class="owl-carousel-item position-relative">
                 <img class="img-fluid" src="{{asset('home/img/carousel-1.jpg')}}" alt="">
@@ -110,12 +110,12 @@
                             <small>English teacher</small>
                         </div>
                     </div>
-                </div>           
+                </div>
             </div>
         </div>
     </div>
     <!-- Team End -->
-    
+
     <!-- video Start -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -126,10 +126,10 @@
             <div class="row g-4 d-flex justify-content-center">
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="overflow-hidden">
-                        there is no video   
+                        there is no video
                     </div>
-                              
-                </div>           
+
+                </div>
             </div>
         </div>
     </div>
@@ -274,7 +274,7 @@
     <!-- Courses End -->
 
 
-    
+
 
 
     <!-- Testimonial Start -->
@@ -321,5 +321,5 @@
         </div>
     </div>
     <!-- Testimonial End -->
-        
+
 </div>
