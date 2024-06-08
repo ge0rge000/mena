@@ -12,22 +12,19 @@ class SlideAddComponent extends Component
     use WithFileUploads;
     public $image;
     public $title;
-    protected $rules = [
-        'image' => 'required',
-        'title' => 'required',
-    ];
+    public $year_type;
+
 
     public function addslider(){
-        $this->validate();
+
         $slider=new Slider;
         $slider->title=$this->title;
-
+        $slider->year_type=$this->year_type;
         if($this->image!=null){
             $imagename=time().'.'.$this->image->extension();
                 $disk = Storage::disk('photos');
                 $path = $disk->putFileAs('sliders', $this->image, $imagename);
             $slider->image=$path;
-
                 }
      $slider->save();
      return redirect()->route("show_slider");

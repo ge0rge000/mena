@@ -40,7 +40,7 @@ Route::post('register',[AuthController::class,'register']);
 Route::post('login',[AuthController::class,'login']);
 Route::post('logout',[AuthController::class,'logout']);
 
-Route::get('sliders',[SliderController::class,'slider']);
+Route::get('sliders/{year_type}',[SliderController::class,'slider']);
 
 Route::get('student/{id_user}',[ResultFinalComponent::class,'getResult']);
 

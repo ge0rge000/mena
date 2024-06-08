@@ -162,7 +162,7 @@ Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
   ///sliders
   Route::get('add_slider',SlideAddComponent::class)->name("add_slider");
   Route::get('edit_slider/{id_slider}',SliderEditComponent::class)->name("edit_slider");
-  Route::get('show_slider',SlidershowComponent::class)->name("show_slider");
+  Route::get('slider',SlidershowComponent::class)->name("show_slider");
 
 
   ///QuestionMoney

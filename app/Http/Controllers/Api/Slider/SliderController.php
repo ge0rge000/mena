@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Slider;
 class SliderController extends Controller
 {
-    public function slider(){
+    public function slider($year_type){
 
-        $sliders=Slider::all();
+        $sliders=Slider::where("year_type",$year_type)->get();
         return response(
             [ 'message'=>"sliders are get",
              'status'=> true,
