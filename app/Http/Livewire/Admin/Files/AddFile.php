@@ -22,51 +22,34 @@ class AddFile extends Component
     public function store(Request $request)
     {
         $new_file = new Files();
-        $file = $request->file;
+        $file = $request->file('file');
         $file_name = $file->getClientOriginalName();
-        // $full_file_path = 'files/' . $file_name;
-        
+
         $new_file->title = $request->file_title;
         $new_file->description = $request->description;
         $new_file->year_type = $request->year;
         $new_file->month = $request->month;
         $new_file->name = $file_name;
-        $unit_id=$request->unit;
+        $unit_id = $request->unit;
         $path = 'files';
 
-        $uploaded_file= $file->move($path ,$file_name);
+        // Move the uploaded file to the public/files directory
+        $uploaded_file = $file->move(public_path($path), $file_name);
 
-        $new_file->path = $uploaded_file;
+        // Store the relative path to the file in the database
+        $new_file->path = $path . '/' . $file_name;
 
-        // Storage::disk('google')->putFileAs('1taL0Y0sp_rgvRn_AaCTiNZ_JbXUbiQAr', $file, $file_name);
-        // Storage::disk('local')->putFileAs('livewire-tmp', $file, $file_name);
-        // $new_file->path = 'livewire-tmp/' . $file_name;
-
-        // $adapter = Storage::disk('google')->getAdapter();
-        // $service = $adapter->getService();
-
-        // $results = $service->files->listFiles([
-        //     'q' => "name = '{$file_name}'",
-        //     'spaces' => 'drive',
-        // ]);
-        // Update the path directly without querying Google Drive
-
-        // $this->fileId = null;
-        // foreach ($results->getFiles() as $file) {
-        //     $this->fileId = $file->getId();
-        //     $new_file->path=$this->fileId;
-        //     break;
-        // }
-        $new_file->save(); 
+        $new_file->save();
         $new_file->units()->attach([
-            $unit_id =>[
-                'created_at'=>now()
+            $unit_id => [
+                'created_at' => now()
             ]
-        ]); 
+        ]);
 
         session()->flash('success_message', 'Upload file was successful');
         return redirect()->back();
     }
+
 
 
     public function render()
