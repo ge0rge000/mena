@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Livewire\Admin\HomeController;
 use App\Http\Controllers\UploadController;
+use App\Http\Controllers\Auth\CustomLoginController;
 
 
 
@@ -106,7 +107,9 @@ Route::get('/home-about',AboutHome::class)->name("home_about");
 Route::get('/home-contact',ContactHome::class)->name("home_contact");
 
 
-  Route::get('/home_admin',HomeController::class)->name("home_admin");
+Route::get('/home_admin',HomeController::class)->name("home_admin");
+Route::get('login', [CustomLoginController::class, 'showLoginForm'])->name('login');
+Route::post('login', [CustomLoginController::class, 'login']);
 
 ///for admin
 Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
