@@ -24,7 +24,7 @@ class AuthController extends Controller
             //     'year_type'=>'required'
             // ],$messages);
 
-            if(User::where('mobile_phone',$req->mobile_phone)->exists()||User::where('device_id',$req->device_id)->exists()){
+            if(User::where('mobile_phone',$req->student_code)->exists()||User::where('device_id',$req->device_id)->exists()){
                 return response(
                     ['message'=>'انت مسجل من قبل ',
                      'status'=> false,
@@ -63,7 +63,7 @@ public function login(Request $req){
         'device_id' => 'required',
     ]);
 
-    $user = User::where('mobile_phone', $req->mobile_phone)->first();
+    $user = User::where('student_code', $req->student_code)->first();
 
     if (!$user) {
         return response(
