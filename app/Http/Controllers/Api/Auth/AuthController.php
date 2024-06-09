@@ -70,7 +70,7 @@ public function login(Request $req){
             ['message' => 'رقم الموبايل خطا ',
              'status' => false,
              'data' => null]
-        , 200);
+        , 401);
     }
 
 
@@ -86,7 +86,7 @@ public function login(Request $req){
                 ['message' => 'استخدم الجهاز المسجل بالنظام',
                  'status' => false,
                  'data' => null]
-            , 200);
+            , 201);
         }
 
 
