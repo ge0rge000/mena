@@ -166,6 +166,20 @@ data-open="click" data-menu="vertical-content-menu" data-col="2-columns">
             </li>
 
             <li class=" navigation-header">
+              <span data-i18n="nav.category.layouts">Subscribtions</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip"
+              data-placement="right" data-original-title="Layouts"></i>
+            </li>
+            <li class=" nav-item"><a href="index.html"><i class="fas fa-credit-card"></i><span class="menu-title" data-i18n="nav.dash.main">Students Sub</span></a>
+              <ul class="menu-content">
+                <li class="{{ Route::currentRouteName() == "subscript_add" ? 'active':'' }}"><a class="menu-item" href="{{ route("subscript_add") }}" data-i18n="nav.dash.ecommerce">Add Subscribtions </a>
+                </li>
+                <li class="{{ Route::currentRouteName() == "subscript_index" ? 'active':'' }}"><a class="menu-item" href="{{ route("subscript_index") }}" data-i18n="nav.dash.ecommerce"> Subscribtions index</a>
+                </li>
+
+              </ul>
+            </li>
+
+            <li class=" navigation-header">
                 <span data-i18n="nav.category.layouts">Videos</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip"
                 data-placement="right" data-original-title="Layouts"></i>
               </li>

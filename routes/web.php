@@ -89,6 +89,10 @@ use App\Http\Livewire\Admin\Lectures\LectureEdit;
 use App\Http\Livewire\Admin\Lectures\LectureShow;
 use App\Http\Livewire\Admin\Lectures\LectureIndex;
 
+// StudentSubscribe
+use App\Http\Livewire\Admin\StudentSubscribe\SubscribeAdd;
+use App\Http\Livewire\Admin\StudentSubscribe\SubscribeIndex;
+use App\Http\Livewire\Admin\StudentSubscribe\SubscribeDelete;
 
 use App\Http\Livewire\HOME;
 
@@ -193,6 +197,11 @@ Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
   Route::get('lecture/show/{id}', LectureShow::class)->name('lecture_show');
   Route::get('lectures', LectureIndex::class)->name('lecture_index');
   Route::get('lectures/content/{id}', LectureShow::class)->name('lecture_show');
+
+  // StudentSubscribe
+  Route::get('subscript/add', SubscribeAdd::class)->name('subscript_add');
+  Route::get('subscript/delete',  SubscribeDelete::class)->name('subscript_delete');
+  Route::get('subscript',  SubscribeIndex::class)->name('subscript_index');
 
 });
 
