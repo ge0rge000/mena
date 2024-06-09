@@ -24,7 +24,7 @@ class AuthController extends Controller
             //     'year_type'=>'required'
             // ],$messages);
 
-            if(User::where('mobile_phone',$req->student_code)->exists()||User::where('device_id',$req->device_id)->exists()){
+            if(User::where('student_code',$req->student_code)->exists()||User::where('device_id',$req->device_id)->exists()){
                 return response(
                     ['message'=>'انت مسجل من قبل ',
                      'status'=> false,
@@ -59,7 +59,7 @@ class AuthController extends Controller
 public function login(Request $req){
 
     $fields = $req->validate([
-        'mobile_phone' => 'required|numeric',
+        'student_code' => 'required|numeric',
         'device_id' => 'required',
     ]);
 
