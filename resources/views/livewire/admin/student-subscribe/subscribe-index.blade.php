@@ -23,9 +23,34 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <table class="table">
-                    
-                </table>
+                {{-- add user data --}}
+                @if($selectedStudent)
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h5>{{ $selectedStudent->name }} -- {{ $selectedStudent->mobile_phone }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <h6>Lectures:</h6>
+                            <ul class="list-group">
+                                @foreach($lectures as $lecture)
+                                    <li class="list-group-item">{{ $lecture->name }} {{ $lecture->unit->name }}</li>
+                                @endforeach
+                            </ul>
+                            <br> 
+                            <h6>Units:</h6>
+                            <ul class="list-group">
+                                @foreach($units as $unit)
+                                    <li class="list-group-item">{{ $unit->name }}</li>
+                                @endforeach
+                            </ul>
+                            <br> 
+                            <h6>Wallet:</h6>
+                            <ul class="list-group">
+                                <li class="list-group-item">{{ $selectedStudent->wallet }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

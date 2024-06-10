@@ -15,7 +15,8 @@ class SubscribeAdd extends Component
     public function updated()
     {   
         if ($this->searchTerm) {
-            $this->results = User::where('mobile_phone', 'like', '%' . $this->searchTerm . '%')
+            $this->results = User::where('utype', 'USR')
+                                ->where('mobile_phone', 'like', '%' . $this->searchTerm . '%')
                                 ->orWhere('code', 'like', '%' . $this->searchTerm . '%')->get();
         } else {
             $this->results = null;

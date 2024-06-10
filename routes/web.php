@@ -94,6 +94,7 @@ use App\Http\Livewire\Admin\Lectures\LectureIndex;
 use App\Http\Livewire\Admin\StudentSubscribe\SubscribeAdd;
 use App\Http\Livewire\Admin\StudentSubscribe\SubscribeIndex;
 use App\Http\Livewire\Admin\StudentSubscribe\SubscribeDelete;
+use App\Http\Livewire\Admin\StudentSubscribe\StudentWallet;
 
 use App\Http\Livewire\HOME;
 
@@ -205,6 +206,7 @@ Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
   Route::get('subscript/add', SubscribeAdd::class)->name('subscript_add');
   Route::get('subscript/delete',  SubscribeDelete::class)->name('subscript_delete');
   Route::get('subscript',  SubscribeIndex::class)->name('subscript_index');
+  Route::get('student/wallet',  StudentWallet::class)->name('student_wallet');
 
 });
 

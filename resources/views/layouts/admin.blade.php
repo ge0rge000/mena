@@ -165,7 +165,7 @@ data-open="click" data-menu="vertical-content-menu" data-col="2-columns">
               </ul>
             </li>
 
-            <li class=" navigation-header">
+            <li class=" navigation-header"> 
               <span data-i18n="nav.category.layouts">Subscribtions</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip"
               data-placement="right" data-original-title="Layouts"></i>
             </li>
@@ -174,6 +174,8 @@ data-open="click" data-menu="vertical-content-menu" data-col="2-columns">
                 <li class="{{ Route::currentRouteName() == "subscript_add" ? 'active':'' }}"><a class="menu-item" href="{{ route("subscript_add") }}" data-i18n="nav.dash.ecommerce">Add Subscribtions </a>
                 </li>
                 <li class="{{ Route::currentRouteName() == "subscript_index" ? 'active':'' }}"><a class="menu-item" href="{{ route("subscript_index") }}" data-i18n="nav.dash.ecommerce"> Subscribtions index</a>
+                </li>
+                <li class="{{ Route::currentRouteName() == "student_wallet" ? 'active':'' }}"><a class="menu-item" href="{{ route("student_wallet") }}" data-i18n="nav.dash.ecommerce"> Student Wallet</a>
                 </li>
 
               </ul>
