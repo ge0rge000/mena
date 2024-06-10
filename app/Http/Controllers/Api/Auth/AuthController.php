@@ -56,50 +56,49 @@ class AuthController extends Controller
     }
     //login
 
-public function login(Request $req){
+    public function login(Request $req){
 
-    $fields = $req->validate([
-        'student_code' => 'required|numeric',
-        'device_id' => 'required',
-    ]);
+        $fields = $req->validate([
+            'student_code' => 'required|numeric',
+            'device_id' => 'required',
+        ]);
 
-    $user = User::where('student_code', $req->student_code)->first();
+        $user = User::where('student_code', $req->student_code)->first();
 
-    if (!$user) {
-        return response(
-            ['message' => 'رقم الموبايل خطا ',
-             'status' => false,
-             'data' => null]
-        , 401);
-    }
-
-
-    if ($user->device_id == null) {
-        // Update the user's device_id with the one from the request
-        $user->device_id = $req->device_id;
-        $user->save();
-    }
-
-        // Check if the device_id from the request matches the user's device_id
-        if ($user->device_id != $req->device_id) {
+        if (!$user) {
             return response(
-                ['message' => 'استخدم الجهاز المسجل بالنظام',
+                ['message' => 'رقم الموبايل خطا ',
                  'status' => false,
                  'data' => null]
-            , 201);
+            , 401);
         }
 
 
-    $token = $user->createToken('myapptoken')->plainTextToken;
+        if ($user->device_id == null) {
+            // Update the user's device_id with the one from the request
+            $user->device_id = $req->device_id;
+            $user->save();
+        }
 
-    return response(
-        ['message' => 'تم الدخول بنجاح ',
-         'status' => true,
-         'data' => $user,
-         'token' => $token,]
-    , 200);
-}
+            // Check if the device_id from the request matches the user's device_id
+            if ($user->device_id != $req->device_id) {
+                return response(
+                    ['message' => 'استخدم الجهاز المسجل بالنظام',
+                     'status' => false,
+                     'data' => null]
+                , 201);
+            }
 
+
+        $token = $user->createToken('myapptoken')->plainTextToken;
+
+        return response(
+            ['message' => 'تم الدخول بنجاح ',
+             'status' => true,
+             'data' => $user,
+             'token' => $token,]
+        , 200);
+    }
 
     public function logout(Request $req){
 
