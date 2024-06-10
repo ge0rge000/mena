@@ -35,6 +35,8 @@ use App\Http\Controllers\Api\Files\HandleFiles;
 
 use App\Http\Controllers\Api\Lectures\LectureController;
 
+use App\Http\Controllers\Api\Wallet\BuyController;
+
 
 Route::post('register',[AuthController::class,'register']);
 Route::post('login',[AuthController::class,'login']);
@@ -73,4 +75,7 @@ Route::get('student/{id_user}',[ResultFinalComponent::class,'getResult']);
 
     Route::get('lecture/{id}',[LectureController::class,'show']);
 
+    // wallet  -- buy lectures and monthes
+    Route::post('buy/lecture',[BuyController::class,'buy_lecture']);
+    Route::post('buy/month',[BuyController::class,'buy_month']);
 

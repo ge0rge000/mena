@@ -13,6 +13,7 @@ class Unit extends Model
     protected $fillable = [
         'name',
         'year_type',
+        'cost'
     ];
 
     public function videos()
