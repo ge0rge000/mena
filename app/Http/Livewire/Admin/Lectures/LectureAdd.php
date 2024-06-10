@@ -12,7 +12,7 @@ class LectureAdd extends Component
 {
     use WithFileUploads;
 
-    public $name, $unit_id, $description, $status, $image, $errorMessage;
+    public $name, $unit_id, $description, $status, $image, $cost,$errorMessage;
 
     public function store()
     {
@@ -20,6 +20,7 @@ class LectureAdd extends Component
         // Validate the input data
         $validated = $this->validate([
             'name' => 'required|min:3',
+            'cost' => 'required|numeric',
             'status' => 'required',
             'image' => 'nullable|max:1024', // Ensure image is an image and max size 1024KB
             'unit_id' => 'required|exists:units,id',
@@ -40,6 +41,7 @@ class LectureAdd extends Component
             $lecture = new Lecture();
             $lecture->fill([
                 'name' => $this->name,
+                'cost' => $this->cost,
                 'status' => $this->status, 
                 'image' => $new_file,
                 'unit_id' => $this->unit_id,

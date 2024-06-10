@@ -34,6 +34,13 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Lecture cost</label>
+                                <input type="number" class="form-control" wire:model="cost" id="exampleFormControlInput2" placeholder="Enter video name">
+                                @error('cost')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Description</label>
                                 <textarea class="form-control" wire:model="description" id="exampleFormControlTextarea1" rows="3"></textarea>
                                 @error('description')

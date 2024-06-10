@@ -30,6 +30,7 @@ class EditAddComponent extends Component
     protected $rules = [
         'name_unit' => 'required',
         'year_unit' => 'required',
+        'cost' => 'required|numeric',
         'image_unit'=>'required'
     ];
     public function edit_unit(){
@@ -39,6 +40,7 @@ class EditAddComponent extends Component
         // dd($unit);
                 // شغالة اهيه  عايز تعمل ا ايه هنا
             $unit->name=$this->name_unit;
+            $unit->cost=$this->cost;
             if($this->year_unit!==""){
             $unit->year_type=$this->year_unit;
             }

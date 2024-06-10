@@ -10,7 +10,7 @@ use App\Models\Unit;
 
 class LectureEdit extends Component
 {
-    public $name, $unit_id, $description, $status, $image, $errorMessage, $lecture;
+    public $name, $unit_id, $description, $status, $image, $cost, $errorMessage, $lecture;
 
     use WithFileUploads;
 
@@ -25,6 +25,7 @@ class LectureEdit extends Component
     }
     protected $rules = [
         'name' => 'required|min:3',
+        'cost' => 'required|numeric',
         'status' => 'required',
         'unit_id' => 'required|exists:units,id',
         'description' => 'nullable',
@@ -45,6 +46,7 @@ class LectureEdit extends Component
         }
         $lecture->update([
             'name'=>$this->name,
+            'cost' => $this->cost,
             'status'=>$this->status,
             'unit_id'=>$this->unit_id,
             'description'=>$this->description,

@@ -43,6 +43,13 @@
                           </div>
                         </div>
                         <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="projectinput1">Unit cost</label>
+                            <input type="number" id="projectinput1" class="form-control" placeholder="Unit cost"
+                            name="fname" wire:model="cost">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="form-group">
                               <label for="projectinput5">year school</label>
                               <select id="projectinput5" name="interested" class="form-control"  wire:model="year_unit">

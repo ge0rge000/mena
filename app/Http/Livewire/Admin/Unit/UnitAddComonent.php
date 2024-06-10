@@ -15,6 +15,7 @@ class UnitAddComonent extends Component
     public $image_unit;
     protected $rules = [
         'name_unit' => 'required',
+        'cost' => 'required|numeric',
         'year_unit' => 'required',
         'image_unit'=>'required'
     ];
@@ -29,6 +30,7 @@ class UnitAddComonent extends Component
             session()->flash("message","you add this unit before");
         }else{
             $unit->name=$this->name_unit;
+            $unit->cost=$this->cost;
             if($this->year_unit!==""){
             $unit->year_type=$this->year_unit;
             }
