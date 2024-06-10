@@ -1,3 +1,60 @@
 <div>
-    {{-- Close your eyes. Count to one. That is how long forever feels. --}}
+    <div class="container-fluid">
+        <div class="row">
+            @if(Session::has('success_message'))
+            <div class="alert alert-success">
+                {{Session::get('success_message')}}
+            </div>
+            @endif
+        </div>
+        <div class="row card">
+            <div class="card-header text-center p-2">
+                <h5>Student subscriptions</h5>
+            </div>
+            <div class="card-body">
+                @if(!$selectedStudent)
+                    <input type="text" class="form-control" wire:model.debounce.500ms="searchTerm" placeholder="Search With Code..." >
+                @endif
+                @if($results)
+                    <ul class="list-group">
+                        @foreach($results as $result)
+                            <button class="btn btn-info" wire:click="selectStudent({{ $result->id }})" type="button">
+                                <li class="list-group-item">
+                                    {{ $result->name }} --  {{ $result->mobile_phone }}
+                                </li>
+                            </button>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                {{-- add user data --}}
+                @if($selectedStudent)
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h5>{{ $selectedStudent->name }} -- {{ $selectedStudent->mobile_phone }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <form wire:submit.prevent="recharge" class="row">
+                                <div class="mb-3 col-md-6">
+                                    <label for="exampleFormControlInput1" class="form-label">Recharge Balance</label>
+                                    <input type="number" class="form-control" wire:model="wallet" id="exampleFormControlInput1" placeholder="enter Balance">
+                                    @error('wallet')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <button type="submit" class="btn btn-primary">submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
 </div>

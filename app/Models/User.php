@@ -29,6 +29,7 @@ class User extends Authenticatable
         'device_id',
         'year_type',
         'mobile_father',
+        'wallet',
     ];
 
     public function question()
