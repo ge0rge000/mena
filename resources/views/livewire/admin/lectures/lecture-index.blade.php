@@ -28,6 +28,7 @@
                         <tr>
                             <th>Lecture image</th>
                             <th> Lecture name</th>
+                            <th>Lecture cost</th>
                             <th>status</th>
                             <th>description</th>
                             <th>unit name</th>
@@ -55,6 +56,9 @@
                                 <p class="fw-normal mb-1">{{$lecture->name}}</p>
                                 <p class="text-muted mb-0">IT department</p>
                             </td>
+                            <td>
+                                {{ $lecture->cost }}
+                              </td>
                             @if($lecture->status=="active")
                             <td>
                                 <span class="badge badge-success rounded-pill d-inline ">{{$lecture->status}}</span>

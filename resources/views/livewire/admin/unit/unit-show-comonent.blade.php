@@ -34,6 +34,7 @@
                   <thead class="table table-bordered mb-0">
                     <tr>
                       <th>name unit </th>
+                      <th>cost</th>
                       <th>image</th>
                       <th>case</th>
 
@@ -46,6 +47,9 @@
                             <td>
                                 <img src="{{ asset($unit->image_unit) }}"width="60" height="60">
                               </td>
+                        </td>
+                        <td>
+                          {{ $unit->cost }}
                         </td>
 
 
