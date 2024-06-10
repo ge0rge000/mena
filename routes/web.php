@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Livewire\Admin\HomeController;
 use App\Http\Controllers\UploadController;
+use App\Http\Controllers\Auth\CustomLoginController;
 
 
 
@@ -89,6 +90,11 @@ use App\Http\Livewire\Admin\Lectures\LectureEdit;
 use App\Http\Livewire\Admin\Lectures\LectureShow;
 use App\Http\Livewire\Admin\Lectures\LectureIndex;
 
+// StudentSubscribe
+use App\Http\Livewire\Admin\StudentSubscribe\SubscribeAdd;
+use App\Http\Livewire\Admin\StudentSubscribe\SubscribeIndex;
+use App\Http\Livewire\Admin\StudentSubscribe\SubscribeDelete;
+use App\Http\Livewire\Admin\StudentSubscribe\StudentWallet;
 
 use App\Http\Livewire\HOME;
 
@@ -102,10 +108,12 @@ Route::get('/home-about',AboutHome::class)->name("home_about");
 Route::get('/home-contact',ContactHome::class)->name("home_contact");
 
 
-  Route::get('/home_admin',HomeController::class)->name("home_admin");
+Route::get('/home_admin',HomeController::class)->name("home_admin");
+Route::get('login', [CustomLoginController::class, 'showLoginForm'])->name('login');
+Route::post('login', [CustomLoginController::class, 'login']);
 
 ///for admin
-
+Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
   ///unit
 
   Route::get('showunits',UnitShowComonent::class)->name("show_unit");
@@ -194,6 +202,14 @@ Route::get('/home-contact',ContactHome::class)->name("home_contact");
   Route::get('lectures', LectureIndex::class)->name('lecture_index');
   Route::get('lectures/content/{id}', LectureShow::class)->name('lecture_show');
 
+  // StudentSubscribe
+  Route::get('subscript/add', SubscribeAdd::class)->name('subscript_add');
+  Route::get('subscript/delete',  SubscribeDelete::class)->name('subscript_delete');
+  Route::get('subscript',  SubscribeIndex::class)->name('subscript_index');
+  Route::get('student/wallet',  StudentWallet::class)->name('student_wallet');
+
+  
+});
 
 
 Route::get('/video', [UploadController::class, 'index']);
