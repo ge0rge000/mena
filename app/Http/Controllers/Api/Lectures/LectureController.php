@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Lectures;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Lecture;
+use App\Models\Unit;
 
 class LectureController extends Controller
 {
@@ -19,6 +20,7 @@ class LectureController extends Controller
     public function __construct()
     {
         $this->target_model=new Lecture;
+        $this->target_unit=new Unit;
     }
 
      
@@ -71,5 +73,11 @@ class LectureController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function unitLectures($id)
+    {
+        $target_unit = $this->target_unit->find($id);
+        $lectures = $target_unit->lectures;
+        return $lectures;
     }
 }

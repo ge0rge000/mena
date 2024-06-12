@@ -32,4 +32,8 @@ class Unit extends Model
     {
         return $this->belongsToMany(User::class,'student_unit');
     }
+    public function lectures()
+    {
+        return $this->hasMany(Lecture::class,'unit_id');
+    }
 }
