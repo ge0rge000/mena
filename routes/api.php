@@ -74,7 +74,8 @@ Route::get('student/{id_user}',[ResultFinalComponent::class,'getResult']);
     Route::get('/student/answers/{exam_id}/{user_id}', [StudentAnswers::class,'show']);
 
     Route::get('lecture/{id}',[LectureController::class,'show']);
-
+    
+    // lectures of one units
     Route::get('unit/lectures/{id}',[LectureController::class,'unitLectures']);
 
     // wallet  -- buy lectures and monthes
