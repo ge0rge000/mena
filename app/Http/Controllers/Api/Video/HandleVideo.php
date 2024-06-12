@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Video;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Lecture;
 
 class HandleVideo extends Controller
 {
@@ -12,6 +13,13 @@ class HandleVideo extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $target_model;
+
+    public function __construct()
+    {
+        $this->target_model=new Lecture;
+    }
+
     public function index()
     {
         //
@@ -36,7 +44,9 @@ class HandleVideo extends Controller
      */
     public function show($id)
     {
-        
+        $lecture=$this->target_model->find($id);
+        $videos= $lecture->videos;
+        return $videos ;
     }
 
     /**

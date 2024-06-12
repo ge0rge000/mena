@@ -12,7 +12,7 @@ class UnitAddComonent extends Component
     public $name_unit;
 
     public $year_unit;
-    public $image_unit;
+    public $image_unit,$cost;
     protected $rules = [
         'name_unit' => 'required',
         'cost' => 'required|numeric',

@@ -67,8 +67,8 @@ Route::get('student/{id_user}',[ResultFinalComponent::class,'getResult']);
     // answers [get answer of specific question - store answers ]
     Route::apiResource('/question/answers', QuestionAnswers::class);
 
-    // Video [show]
-    Route::apiResource('/video', HandleVideo::class);
+    // Videos of lectures [show]
+    Route::get('/lecture/videos/{id}', [HandleVideo::class,'show']);
 
     // student answers and correct answers
     Route::get('/student/answers/{exam_id}/{user_id}', [StudentAnswers::class,'show']);
