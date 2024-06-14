@@ -24,6 +24,7 @@
                 </div>
                 <div class="row mt-4 mb-5">
                     @if ($videos)
+                        <h4 class="d-flex justify-content-center mt-2 mb-4">{{ $lecture['name'] }}</h4>
                         <div class="row">
                             @foreach ($videos as $video)
                                 <div class="col-md-6">
