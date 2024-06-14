@@ -28,7 +28,9 @@ use App\Http\Livewire\Admin\Video\VideoAddController;
 use App\Http\Livewire\Admin\Video\VideoEditController;
 use App\Http\Livewire\Admin\Video\ShowVideoComponent;
 use App\Http\Livewire\Admin\Video\ShowVideoDataComponent;
+use App\Http\Livewire\Admin\Video\LectureVideos;
 use App\Http\Controllers\UploadVideoController;
+
 ///Exam
 use App\Http\Livewire\Admin\Exam\SELECTYEAREXAM;
 use App\Http\Livewire\Admin\Exam\ExamAddController;
@@ -126,6 +128,8 @@ Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
   Route::get('editvideo/{id_video}',VideoEditController::class)->name("edit_video");
   Route::get('show_videos/{year_type}',ShowVideoComponent::class)->name("show_video");
   Route::get("show_video_data/{ide}",ShowVideoDataComponent::class)->name("show_data_video");
+  Route::get("lecture/videos",LectureVideos::class)->name("show_lecture_videos");
+
     //kamel
   Route::post('upload_video',[UploadVideoController::class,'uploadLargeFiles'])->name('upload.video');
   ///exam
