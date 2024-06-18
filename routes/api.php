@@ -37,6 +37,7 @@ use App\Http\Controllers\Api\Lectures\LectureController;
 
 use App\Http\Controllers\Api\Wallet\BuyController;
 
+use  App\Http\Controllers\Api\Students\StudentController;
 
 Route::post('register',[AuthController::class,'register']);
 Route::post('login',[AuthController::class,'login']);
@@ -82,3 +83,6 @@ Route::get('student/{id_user}',[ResultFinalComponent::class,'getResult']);
     Route::post('buy/lecture',[BuyController::class,'buy_lecture']);
     Route::post('buy/month',[BuyController::class,'buy_month']);
 
+    // check student lecture and unit
+    Route::get('check/student/lectures/{id}', [StudentController::class, 'checkLectures']);
+    Route::get('check/student/units/{id}',[StudentController::class,'checkUnits']);

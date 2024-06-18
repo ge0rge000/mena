@@ -6,6 +6,16 @@
                     {{Session::get('success_message')}}
                 </div>
             @endif
+            @if(Session::has('error_message'))
+                <div class="alert alert-danger">
+                    {{Session::get('error_message')}}
+                </div>
+            @endif
+            @if(Session::has('warning_message'))
+                <div class="alert alert-warning">
+                    {{Session::get('warning_message')}}
+                </div>
+            @endif
         </div>
         <div class="row">
             <div class="col-md-12">

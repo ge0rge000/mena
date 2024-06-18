@@ -1,5 +1,22 @@
 <div>
     <div class="container-fluid">
+        <div class="row">
+            @if(Session::has('success_message'))
+                <div class="alert alert-success">
+                    {{Session::get('success_message')}}
+                </div>
+            @endif
+            @if(Session::has('error_message'))
+                <div class="alert alert-danger">
+                    {{Session::get('error_message')}}
+                </div>
+            @endif
+            @if(Session::has('warning_message'))
+                <div class="alert alert-warning">
+                    {{Session::get('warning_message')}}
+                </div>
+            @endif
+        </div>
         <div class="row card">
             <div class="card-header text-center p-2">
                 <h5>Student subscriptions</h5>

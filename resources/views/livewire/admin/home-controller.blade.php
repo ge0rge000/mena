@@ -105,7 +105,6 @@ a.btn.btn-primary.manual {
                   </button>
                 </div>
               </form>
-              <a href="{{ asset('images/habiba(2).pdf') }}">Download PDF</a>
 
                 @if($case==1)
                 @if($student!=null)

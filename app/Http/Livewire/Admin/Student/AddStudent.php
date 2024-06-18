@@ -14,7 +14,7 @@ class AddStudent extends Component
     public function generateUniqueCode()
     {
 
-        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $characters = '0123456789';
         $charactersNumber = strlen($characters);
         $codeLength = 6;
 

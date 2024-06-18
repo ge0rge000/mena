@@ -7,9 +7,9 @@
   <meta name="description" content="Modern admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard.">
   <meta name="keywords" content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
   <meta name="author" content="PIXINVENT">
-  <title>Le CHEF</title>
-  <link rel="apple-touch-icon" href="{{asset('images/lechef.jpg')}}">
-  <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/lechef.jpg')}}">
+  <title>BigBen</title>
+  <link rel="apple-touch-icon" href="{{asset('lecture-images/BOX SHIPING.png')}}">
+  <link rel="shortcut icon" type="image/x-icon" href="{{asset('lecture-images/BOX SHIPING.png')}}">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
   rel="stylesheet">
   <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
@@ -61,8 +61,15 @@
   html body .content.app-content {
       overflow: auto;
   }
+  a.ytp-watermark.yt-uix-sessionlink{
+      display: none !important;
+  }
+  .ytp-chrome-top.ytp-show-cards-title{
+      display: none !important;
+  }
   </style>
   @livewireStyles
+  @stack('style')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="//cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"></script>
@@ -85,7 +92,7 @@ data-open="click" data-menu="vertical-content-menu" data-col="2-columns">
           <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
           <li class="nav-item">
             <a class="navbar-brand" href="{{ route("home_admin") }}">
-              <img class="brand-logo" alt="modern admin logo" src="{{asset('images/lechef.jpg')}}">
+              {{-- <img class="brand-logo" alt="modern admin logo" src="{{asset('images/lechef.jpg')}}"> --}}
               <h3 class="brand-text">{{auth()->user()->name}}</h3>
             </a>
           </li>
@@ -109,7 +116,7 @@ data-open="click" data-menu="vertical-content-menu" data-col="2-columns">
                   <span class="user-name text-bold-700">{{auth()->user()->name}}</span>
                 </span>
                 <span class="avatar avatar-online">
-                  <img src="{{asset('images/lechef.jpg')}}" alt="avatar"><i></i></span>
+                  {{-- <img src="{{asset('images/lechef.jpg')}}" alt="avatar"><i></i></span> --}}
               </a>
               <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">
 
@@ -238,6 +245,8 @@ data-open="click" data-menu="vertical-content-menu" data-col="2-columns">
                           $url="http://127.0.0.1:8000";
                   ?>
                   <li class="{{ Route::currentRouteName() == "add_student" ? 'active':'' }}"><a class="menu-item" href="{{ route("add_student") }}" data-i18n="nav.dash.ecommerce">Add student</a>
+                  </li>
+                  <li class="{{ Route::currentRouteName() == "student_search" ? 'active':'' }}"><a class="menu-item" href="{{ route("student_search") }}" data-i18n="nav.dash.ecommerce">Student Search</a>
                   </li>
                   <li class="{{ url()->current() == "$url/show_student/ONE" ? 'active':'' }}"><a class="menu-item" href="{{ route("show_student",['year_type'=>"ONE"]) }}" data-i18n="nav.dash.ecommerce">First grade secondary</a>
                   </li>

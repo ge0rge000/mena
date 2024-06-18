@@ -20,7 +20,7 @@
                         @foreach($results as $result)
                             <button class="btn btn-info" wire:click="selectStudent({{ $result->id }})" type="button">
                                 <li class="list-group-item">
-                                    {{ $result->name }} --  {{ $result->mobile_phone }}
+                                    {{ $result->name }} --  {{ $result->mobile_phone }} -- {{ $result->student_code }}
                                 </li>
                             </button>
                         @endforeach
@@ -34,13 +34,21 @@
                 @if($selectedStudent)
                     <div class="card mt-4">
                         <div class="card-header">
-                            <h5>{{ $selectedStudent->name }} -- {{ $selectedStudent->mobile_phone }}</h5>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h5>{{ $selectedStudent->name }} -- {{ $selectedStudent->mobile_phone }} -- {{ $selectedStudent->student_code }}</h5>
+                                </div>
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4">
+                                    <h5 class="d-flex justify-content-center">Balance : {{ $selectedStudent->wallet }} </h5>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
                             <form wire:submit.prevent="recharge" class="row">
                                 <div class="mb-3 col-md-6">
                                     <label for="exampleFormControlInput1" class="form-label">Recharge Balance</label>
-                                    <input type="number" class="form-control" wire:model="wallet" id="exampleFormControlInput1" placeholder="enter Balance">
+                                    <input type="number" class="form-control" wire:model="wallet" id="exampleFormControlInput1" placeholder="Enter charge Added to the balance">
                                     @error('wallet')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror

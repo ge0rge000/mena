@@ -1,4 +1,15 @@
 <div>
+    @push('style')
+        <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
+        <style>
+            a.ytp-watermark.yt-uix-sessionlink{
+                display: none !important;
+            }
+            .ytp-chrome-top.ytp-show-cards-title{
+                display: none !important;
+            }
+        </style>
+    @endpush
     <div class="container">
         <div class="row card">
             <div class="col-md-12">
@@ -32,7 +43,9 @@
                                         <h5 class="d-flex justify-content-center">{{ $video->name_video }}</h5>
                                     </div>
                                     <div class="row">
-                                        <iframe src="{{ $video->embed_link }}" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        <div class="plyr__video-embed">
+                                            <iframe src="{{ $video->embed_link }}?rel=0&controls=0&modestbranding=1&showinfo=0&iv_load_policy=3" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach
@@ -42,4 +55,14 @@
             </div>
         </div>
     </div>
+    @push('scripts')
+        <script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js"></script>
+        <script>
+            document.addEventListener('livewire:load', () => {
+                Livewire.hook('message.processed', (message, component) => {
+                    const players = Array.from(document.querySelectorAll('.plyr__video-embed')).map(p => new Plyr(p));
+                });
+            });
+        </script>
+    @endpush
 </div>

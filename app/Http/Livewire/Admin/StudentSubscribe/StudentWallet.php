@@ -17,7 +17,7 @@ class StudentWallet extends Component
         if ($this->searchTerm) {
             $this->results = User::where('utype', 'USR')
                                 ->where('mobile_phone', 'like', '%' . $this->searchTerm . '%')
-                                ->orWhere('code', 'like', '%' . $this->searchTerm . '%')
+                                ->orWhere('student_code', 'like', '%' . $this->searchTerm . '%')
                                 ->orWhere('name', 'like', '%' . $this->searchTerm . '%')->get();
            
         } else {

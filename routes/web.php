@@ -98,6 +98,10 @@ use App\Http\Livewire\Admin\StudentSubscribe\SubscribeIndex;
 use App\Http\Livewire\Admin\StudentSubscribe\SubscribeDelete;
 use App\Http\Livewire\Admin\StudentSubscribe\StudentWallet;
 
+//student Search
+use App\Http\Livewire\Admin\Student\StudentSearch;
+
+ 
 use App\Http\Livewire\HOME;
 
 
@@ -212,7 +216,9 @@ Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
   Route::get('subscript',  SubscribeIndex::class)->name('subscript_index');
   Route::get('student/wallet',  StudentWallet::class)->name('student_wallet');
 
-  
+  //student Search
+  Route::get('student/search',  StudentSearch::class)->name('student_search');
+
 });
 
 
