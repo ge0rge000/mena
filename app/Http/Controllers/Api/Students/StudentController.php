@@ -24,7 +24,13 @@ class StudentController extends Controller
     }
     public function checkUnits($id)
     {
-        $student =User::find($id);
-        return response()->json($student->units);
+        $student = User::find($id);
+        if (!$student) {
+            return response()->json(['error' => 'Student not found'], 404);
+        }
+        $unitIds = $student->units->pluck('id');
+
+        return response()->json($unitIds);
     }
+
 }
