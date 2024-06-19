@@ -10,10 +10,18 @@ class StudentController extends Controller
 {
     public function checkLectures($id)
     {
-        $student =User::with('lectures.unit')->find($id);
-        return response()->json($student->lectures);
-    }
+        // Retrieve the student with their lectures and units
+        $student = User::with('lectures.unit')->find($id);
 
+        if (!$student) {
+            return response()->json(['error' => 'Student not found'], 404);
+        }
+
+        // Extract lecture IDs
+        $lectureIds = $student->lectures->pluck('id');
+
+        return response()->json($lectureIds);
+    }
     public function checkUnits($id)
     {
         $student =User::find($id);
