@@ -18,7 +18,7 @@ class StudentController extends Controller
         $lectureIds = DB::table('lectures')
                         ->join('student_lecture', 'lectures.id', '=', 'student_lecture.lecture_id')
                         ->where('student_lecture.user_id', '=', $id)
-                        ->where('lectures.status', '=', 1)  // Specify the table name for the status column
+                        ->where('student_lecture.status', '=', 1)  // Specify the table name for the status column
                         ->pluck('lectures.id');
 
         return response()->json($lectureIds);
