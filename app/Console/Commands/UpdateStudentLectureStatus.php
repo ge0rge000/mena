@@ -17,7 +17,7 @@ class UpdateStudentLectureStatus extends Command
 
     public function handle()
     {
-        DB::table('student_lecture')->update(['status' => 1]);
+        DB::table('student_lecture')->update(['status' => 0]);
         $this->info('Student lecture status updated successfully.');
     }
 }
