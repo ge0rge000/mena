@@ -40,11 +40,12 @@ class AddStudent extends Component
         $new_user->mobile_father = $this->mobile_father;
         $new_user->mobile_phone = $this->code;
         $new_user->case_reverse = $this->case;
-        $new_user->device_id =12;        //change this with device id
+        $new_user->device_id =12;
+        $new_user->wallet =0    ;       //change this with device id
         $new_user->save();
         $this->finish();
         session()->flash("success_message","you add a new student");
-        return redirect()->back();    
+        return redirect()->back();
     }
     public function finish()
     {
@@ -55,7 +56,7 @@ class AddStudent extends Component
         $this->case=null;
     }
     public function render()
-    { 
+    {
         $table = 'users';
         $column = 'case_reverse';
 
