@@ -38,8 +38,9 @@ class AddStudent extends Component
         $new_user->name = $this->name;
         $new_user->year_type = $this->year;
         $new_user->mobile_father = $this->mobile_father;
-        $new_user->mobile_phone = $this->code;
-        $new_user->case_reverse = $this->case;
+        $new_user->student_code = $this->code;
+        $new_user->student_code = $this->code;
+        $new_user->mobile_phone  = '01554923545';
         $new_user->device_id =null;
         $new_user->wallet =0    ;       //change this with device id
         $new_user->save();
