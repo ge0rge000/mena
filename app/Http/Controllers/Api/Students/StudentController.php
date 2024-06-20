@@ -32,5 +32,11 @@ class StudentController extends Controller
 
         return response()->json($unitIds);
     }
+    public function returnwallet($id)
+    {
+        $student = User::find($id);
+
+        return $student->wallet();
+    }
 
 }
