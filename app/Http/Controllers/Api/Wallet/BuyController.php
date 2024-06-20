@@ -125,7 +125,7 @@ class BuyController extends Controller
 
         // Check if the student already has any lectures
         $lectures = $student->with('lectures.unit');
-
+            dd($lectures);
         if ($lectures->isEmpty()) {
             if ($student->wallet >= $unit->cost) {
                 // Deduct the cost from the student's wallet
