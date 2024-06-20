@@ -124,7 +124,7 @@ class BuyController extends Controller
         }
 
         // Check if the student already has any lectures
-        $lectures = $student->with('lectures.unit');
+        $lectures = User::with('lectures.unit')->find($request->student_id);
             dd($lectures);
         if ($lectures->isEmpty()) {
             if ($student->wallet >= $unit->cost) {
