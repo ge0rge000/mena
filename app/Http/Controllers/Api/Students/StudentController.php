@@ -9,19 +9,21 @@ use DB;
 class StudentController extends Controller
 {
     public function checkLectures($id)
-    {
-        // Retrieve the student with their lectures and units
-        $student = User::with('lectures.unit')->find($id);
-
-        if (!$student) {
-            return response()->json(['error' => 'Student not found'], 404);
-        }
-
-        // Extract lecture IDs
-        $lectureIds = $student->lectures->pluck('id');
-
-        return response()->json($lectureIds);
+{
+    $student = User::find($id);
+    if (!$student) {
+        return response()->json(['error' => 'Student not found'], 404);
     }
+
+    $lectureIds = DB::table('lectures')
+                    ->join('student_lecture', 'lectures.id', '=', 'student_lecture.lecture_id')
+                    ->where('student_lecture.user_id', '=', $id)
+                    ->where('lectures.status', '=', 1)
+                    ->pluck('lectures.id');
+
+    return response()->json($lectureIds);
+}
+
  public function checkUnits($id)
 {
     $student = User::find($id);
