@@ -36,7 +36,7 @@ class StudentController extends Controller
     {
         $student = User::find($id);
 
-        return $student->wallet();
+        return $student->wallet;
     }
 
 }

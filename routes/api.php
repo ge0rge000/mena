@@ -86,7 +86,4 @@ Route::get('student/{id_user}',[ResultFinalComponent::class,'getResult']);
     // check student lecture and unit
     Route::get('check/student/lectures/{id}', [StudentController::class, 'checkLectures']);
     Route::get('check/student/units/{id}',[StudentController::class,'checkUnits']);
-
-
-
     Route::get('student/wallet/{id}',[StudentController::class,'returnwallet']);
