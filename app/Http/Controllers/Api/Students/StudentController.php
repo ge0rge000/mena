@@ -28,7 +28,8 @@ class StudentController extends Controller
         if (!$student) {
             return response()->json(['error' => 'Student not found'], 404);
         }
-        $unitIds = $student->units->where('status', '!=', 0)->pluck('id');
+
+        $unitIds = $student->units()->where('status', '=', 1)->pluck('id');
 
         return response()->json($unitIds);
     }
