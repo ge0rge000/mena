@@ -77,7 +77,7 @@ class BuyController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => 'You have already purchased this unit.',
-            ], 400);
+            ], 201);
         }
 
         if ($student->wallet >= $unit->cost) {
