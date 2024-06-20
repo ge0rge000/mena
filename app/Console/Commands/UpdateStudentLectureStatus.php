@@ -16,19 +16,24 @@ class UpdateStudentLectureStatus extends Command
         parent::__construct();
     }
 
-    public function handle()
+public function handle()
     {
-        $records = DB::table('student_lecture')->get();
+        DB::beginTransaction();
+        try {
+            $updatedRecords = DB::table('student_lecture')
+                ->where('created_at', '<', Carbon::now()->subMonth())
+                ->update(['status' => 0]);
 
-        foreach ($records as $record) {
-            // Assuming you want to update status if the created_at is older than one month
-            if (Carbon::parse($record->created_at)->lt(Carbon::now()->subMonth())) {
-                DB::table('student_lecture')
-                    ->where('id', $record->id)
-                    ->update(['status' => 0]);
+            DB::commit();
+
+            if ($updatedRecords > 0) {
+                $this->info("Updated $updatedRecords student lecture record(s) successfully.");
+            } else {
+                $this->info('No student lecture records to update.');
             }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $this->error('Failed to update student lecture records: ' . $e->getMessage());
         }
-
-        $this->info('Student lecture status updated successfully.');
     }
 }
