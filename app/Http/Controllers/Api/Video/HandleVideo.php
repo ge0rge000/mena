@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Video;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Lecture;
+use App\Models\FreeVideo;
 
 class HandleVideo extends Controller
 {
@@ -70,5 +71,11 @@ class HandleVideo extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function freeVideos()
+    {
+        $videos=FreeVideo::where('status',1)->get();
+        return $videos;
     }
 }

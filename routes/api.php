@@ -70,7 +70,10 @@ Route::get('student/{id_user}',[ResultFinalComponent::class,'getResult']);
 
     // Videos of lectures [show]
     Route::get('/lecture/videos/{id}', [HandleVideo::class,'show']);
+    //free videos
+    Route::get('/lecture/free/videos', [HandleVideo::class,'freeVideos']);
 
+    
     // student answers and correct answers
     Route::get('/student/answers/{exam_id}/{user_id}', [StudentAnswers::class,'show']);
 

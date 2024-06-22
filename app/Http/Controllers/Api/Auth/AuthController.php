@@ -61,6 +61,7 @@ class AuthController extends Controller
         $fields = $req->validate([
             'student_code' => 'required|numeric',
             'device_id' => 'required',
+            'remember_token' => 'required',
         ]);
 
         $user = User::where('student_code', $req->student_code)->first();
@@ -77,6 +78,7 @@ class AuthController extends Controller
         if ($user->device_id == null) {
             // Update the user's device_id with the one from the request
             $user->device_id = $req->device_id;
+            $user->remember_token = $req->remember_token;
             $user->save();
         }
 

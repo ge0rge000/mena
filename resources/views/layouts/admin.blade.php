@@ -196,6 +196,8 @@ data-open="click" data-menu="vertical-content-menu" data-col="2-columns">
                 <ul class="menu-content">
                   <li class="{{ Route::currentRouteName() == "add_video" ? 'active':'' }}"><a class="menu-item" href="{{ route("select_year_video") }}" data-i18n="nav.dash.ecommerce">add video</a>
                   </li>
+                  <li class="{{ Route::currentRouteName() == "add_free_video" ? 'active':'' }}"><a class="menu-item" href="{{ route("add_free_video") }}" data-i18n="nav.dash.ecommerce">add free video</a>
+                  </li>
                   <?php
                           $url="http://127.0.0.1:8000";
 
