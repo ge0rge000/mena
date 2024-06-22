@@ -35,6 +35,7 @@ class ShowStudentComponent extends Component
     public function deletestudent($student_id){
         $student=User::where("id",$student_id)->first();
         $student->delete();
+        return redirect()->back();
     }
 
 
