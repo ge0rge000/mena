@@ -19,6 +19,8 @@ class CreateFreeVideosTable extends Migration
             $table->text('description');
             $table->string('link');
             $table->enum('status',[0,1]);
+            $table->enum('year_type',['ONE','TWO','THREE']);
+
             $table->timestamps();
         });
     }

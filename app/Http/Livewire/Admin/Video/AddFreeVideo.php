@@ -8,7 +8,7 @@ use App\Models\FreeVideo;
 class AddFreeVideo extends Component
 {
     public $status; // Default value
-    public $name, $description, $link;
+    public $name, $description, $link,$year_type;
 
     public function store()
     {
@@ -25,6 +25,8 @@ class AddFreeVideo extends Component
         $new_video->description = $this->description;
         $new_video->link = $this->link;
         $new_video->status = $this->status==1 ? 1 : 0; // Explicitly set 1 or 0
+        $new_video->year_type = $this->year_type;
+        
         $new_video->save();
 
         return redirect()->route('lecture_index');

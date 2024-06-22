@@ -13,6 +13,7 @@ class FreeVideo extends Model
         'name',
         'description',
         'status',
-        'link',   
+        'link',
+        'year_type',   
     ];
 }
