@@ -18,7 +18,7 @@ class CreateFreeVideosTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('link');
-            $table->enum('status',[0,1]);
+            $table->tinyInteger('status'); // Change to tinyInteger for 0 or 1 values
             $table->enum('year_type',['ONE','TWO','THREE']);
 
             $table->timestamps();
