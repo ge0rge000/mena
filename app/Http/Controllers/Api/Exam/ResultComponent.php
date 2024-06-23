@@ -8,12 +8,14 @@ use App\Models\TrueAnswer;
 use App\Models\ChoiceResult;
 use App\Models\PargraphResult;
 use App\Models\FinalResult;
-
+use App\Models\QuestionChoice;
 
 class ResultComponent extends Controller
 {
 
     public function checkanswerchoice(Request $request){
+
+        $count = QuestionChoice::where('exam_id', $request->get('exam_id'))->count();
 
             if($request->get('choices')==null){
 
@@ -68,7 +70,7 @@ class ResultComponent extends Controller
                 'choices' => $choicestudent,
                 'exam_id' =>$request->get('exam_id'),
                 'user_id' => $request->get('user_id'),
-                'result' => $result,
+                'result' => "$result/$count",
             ]
             );
             return response(
