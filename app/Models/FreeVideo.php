@@ -16,4 +16,13 @@ class FreeVideo extends Model
         'link',
         'year_type',   
     ];
+    public function getEmbedLinkAttribute()
+    {
+        // Extract the video ID from the YouTube URL
+        if (preg_match('/youtu\.be\/([^\?]*)/', $this->link, $matches) || preg_match('/youtube\.com\/watch\?v=([^\&]*)/', $this->link, $matches)) {
+            return 'https://www.youtube.com/embed/' . $matches[1];
+        }
+
+        return null;
+    }
 }

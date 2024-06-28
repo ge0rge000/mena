@@ -184,11 +184,12 @@ data-open="click" data-menu="vertical-content-menu" data-col="2-columns">
                 </li>
                 <li class="{{ Route::currentRouteName() == "student_wallet" ? 'active':'' }}"><a class="menu-item" href="{{ route("student_wallet") }}" data-i18n="nav.dash.ecommerce"> Student Wallet</a>
                 </li>
-
+                <li class="{{ Route::currentRouteName() == "subscript_delete" ? 'active':'' }}"><a class="menu-item" href="{{ route("subscript_delete") }}" data-i18n="nav.dash.ecommerce"> Delete subscription</a>
+                </li>
               </ul>
             </li>
 
-            <li class=" navigation-header">
+            <li class=" navigation-header"> 
                 <span data-i18n="nav.category.layouts">Videos</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip"
                 data-placement="right" data-original-title="Layouts"></i>
               </li>
@@ -197,6 +198,8 @@ data-open="click" data-menu="vertical-content-menu" data-col="2-columns">
                   <li class="{{ Route::currentRouteName() == "add_video" ? 'active':'' }}"><a class="menu-item" href="{{ route("select_year_video") }}" data-i18n="nav.dash.ecommerce">add video</a>
                   </li>
                   <li class="{{ Route::currentRouteName() == "add_free_video" ? 'active':'' }}"><a class="menu-item" href="{{ route("add_free_video") }}" data-i18n="nav.dash.ecommerce">add free video</a>
+                  </li>
+                  <li class="{{ Route::currentRouteName() == "show_free_video" ? 'active':'' }}"><a class="menu-item" href="{{ route("show_free_video") }}" data-i18n="nav.dash.ecommerce">Show free videos </a>
                   </li>
                   <?php
                           $url="http://127.0.0.1:8000";
