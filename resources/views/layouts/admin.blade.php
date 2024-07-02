@@ -190,6 +190,19 @@ data-open="click" data-menu="vertical-content-menu" data-col="2-columns">
             </li>
 
             <li class=" navigation-header"> 
+              <span data-i18n="nav.category.layouts">Transactions</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip"
+              data-placement="right" data-original-title="Layouts"></i>
+            </li>
+
+            <li class=" nav-item"><a href="index.html"><i class="fas fa-credit-card"></i><span class="menu-title" data-i18n="nav.dash.main">All Transactions</span></a>
+              <ul class="menu-content">
+                <li class="{{ Route::currentRouteName() == "transactions" ? 'active':'' }}"><a class="menu-item" href="{{ route("transactions") }}" data-i18n="nav.dash.ecommerce">Show  </a>
+                </li>
+              </ul>
+            </li>
+
+
+            <li class=" navigation-header"> 
                 <span data-i18n="nav.category.layouts">Videos</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip"
                 data-placement="right" data-original-title="Layouts"></i>
               </li>

@@ -103,7 +103,9 @@ use App\Http\Livewire\Admin\StudentSubscribe\StudentWallet;
 //student Search
 use App\Http\Livewire\Admin\Student\StudentSearch;
 
- 
+//transactions
+use App\Http\Livewire\Admin\Transactions\TransactionIndex;
+
 use App\Http\Livewire\HOME;
 
 
@@ -223,6 +225,8 @@ Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
 
   //student Search
   Route::get('student/search',  StudentSearch::class)->name('student_search');
+  //transactions
+  Route::get('transactions',  TransactionIndex::class)->name('transactions');
 
 });
 
