@@ -36,4 +36,8 @@ class Unit extends Model
     {
         return $this->hasMany(Lecture::class,'unit_id');
     }
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class,'unit_id');
+    }
 }

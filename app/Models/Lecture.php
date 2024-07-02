@@ -27,4 +27,8 @@ class Lecture extends Model
     {
         return $this->belongsToMany(User::class,'student_lecture');
     }
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class,'lecture_id');
+    }
 }

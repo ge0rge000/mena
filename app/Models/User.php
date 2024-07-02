@@ -46,6 +46,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Unit::class,'student_unit');
     }
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class,'user_id');
+    }
     
     /**
      * The attributes that should be hidden for serialization.

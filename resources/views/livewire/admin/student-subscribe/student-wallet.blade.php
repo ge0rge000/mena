@@ -3,7 +3,12 @@
         <div class="row">
             @if(Session::has('success_message'))
             <div class="alert alert-success">
-                {{Session::get('success_message')}}
+                {{ Session::get('success_message') }}
+            </div>
+            @endif
+            @if(Session::has('error_message'))
+            <div class="alert alert-danger">
+                {{ Session::get('error_message') }}
             </div>
             @endif
         </div>
@@ -13,7 +18,7 @@
             </div>
             <div class="card-body">
                 @if(!$selectedStudent)
-                    <input type="text" class="form-control" wire:model.debounce.500ms="searchTerm" placeholder="Search With Code..." >
+                    <input type="text" class="form-control" wire:model.debounce.500ms="searchTerm" placeholder="Search With Code...">
                 @endif
                 @if($results)
                     <ul class="list-group">
@@ -40,22 +45,23 @@
                                 </div>
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4">
-                                    <h5 class="d-flex justify-content-center">Balance : {{ $selectedStudent->wallet }} </h5>
+                                    <h5 class="d-flex justify-content-center">Balance: {{ $selectedStudent->wallet }}</h5>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <form wire:submit.prevent="recharge" class="row">
+                            <form wire:submit.prevent class="row">
                                 <div class="mb-3 col-md-6">
-                                    <label for="exampleFormControlInput1" class="form-label">Recharge Balance</label>
-                                    <input type="number" class="form-control" wire:model="wallet" id="exampleFormControlInput1" placeholder="Enter charge Added to the balance">
+                                    <label for="exampleFormControlInput1" class="form-label">Amount</label>
+                                    <input type="number" class="form-control" wire:model="wallet" id="exampleFormControlInput1" placeholder="Enter amount">
                                     @error('wallet')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <button type="submit" class="btn btn-primary">submit</button>
+                                        <button type="button" wire:click="deposit" class="btn btn-primary">Deposit</button>
+                                        <button type="button" wire:click="withdraw" class="btn btn-danger">Withdraw</button>
                                     </div>
                                 </div>
                             </form>

@@ -30,7 +30,7 @@
                                 <div class="">
                                     <label for="exampleFormControlInput1" class="form-label">Choose Student</label>
                                     @if(!$selectedStudent)
-                                        <input type="text" class="form-control" wire:model.debounce.500ms="searchTerm" placeholder="Search With Code..." >
+                                        <input type="text" class="form-control" wire:model.debounce.500ms="searchTerm" placeholder="Search With Code...">
                                     @endif
                                     @if($results)
                                         <ul class="list-group">
@@ -88,7 +88,7 @@
                                                 <td> {{$unit->name}} </td>
                                                 <td> {{$unit->cost}} </td>
                                                 <td class="text-left" id="">
-                                                    <button type="button" href="" class="btn btn-danger"  wire:click="deleteUnitSub({{$unit->id}})">Delete </button>
+                                                    <button type="button" href="" class="btn btn-danger" wire:click="deleteUnitSub({{$unit->id}})">Delete </button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -98,7 +98,6 @@
                             </div>
                             @endif
                         </div> 
-                        {{-- <button class="btn btn-primary" form="addSubscript">Add</button> --}}
                     </div>
                 </div>
             </div>
