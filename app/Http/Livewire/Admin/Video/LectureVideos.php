@@ -5,10 +5,12 @@ namespace App\Http\Livewire\Admin\Video;
 use Livewire\Component;
 use App\Models\Lecture;
 use App\Models\Unit;
+use App\Models\Video;
 
 class LectureVideos extends Component
 {
     public $lecture_id, $units, $lectures = [], $unid_id, $videos;
+    public $videoToDelete;
 
     public function mount()
     {
@@ -37,18 +39,21 @@ class LectureVideos extends Component
         return isset($query['v']) ? 'https://www.youtube.com/embed/' . $query['v'] : null;
     }
 
-    public function deleteVideo($videoId)
+    public function confirmDelete($videoId)
     {
-        $video = Video::findOrFail($videoId);
+        $this->videoToDelete = $videoId;
+        $this->dispatchBrowserEvent('show-delete-modal');
+    }
+
+    public function deleteVideo()
+    {
+        $video = Video::findOrFail($this->videoToDelete);
         $video->delete();
-        $this->updated('lecture_id'); // Refresh the video list
         session()->flash('message', 'Video deleted successfully.');
+        $this->dispatchBrowserEvent('hide-delete-modal');
+        $this->updated('lecture_id');
     }
-    public function confirmDeletion($videoId)
-    {
-        $this->dispatchBrowserEvent('confirmDeletion', ['videoId' => $videoId]);
-    }
-    
+
     public function render()
     {
         return view('livewire.admin.video.lecture-videos')->layout('layouts.admin');

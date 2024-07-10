@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="row mt-4 mb-5">
-                    @if ($videos)
+                    @if ($videos && count($videos) > 0)
                         <h4 class="d-flex justify-content-center mt-2 mb-4">{{ $lecture['name'] }}</h4>
                         <div class="row">
                             @foreach ($videos as $video)
@@ -47,21 +47,45 @@
                                             <iframe src="{{ $video->embed_link }}?rel=0&controls=0&modestbranding=1&showinfo=0&iv_load_policy=3" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
                                         </div>
                                         <br>
-                                        <div class="col-md-5">
+                                        <div class="col-md-12">
                                             <div class="row d-flex flex-row">
                                                 <a href="{{ route('video_edit', $video->id) }}" class="btn btn-warning m-3 col-md-6">Edit</a>
-                                                <button class="btn btn-danger m-3 col-md-6" wire:click="confirmDeletion({{ $video->id }})">Delete</button>
+                                                <button class="btn btn-danger m-3 col-md-6" wire:click="confirmDelete({{ $video->id }})">Delete</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
                         </div>
+                    @else
+                        <p class="text-center mt-4">No videos available for the selected lecture.</p>
                     @endif
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div wire:ignore.self class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this video?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" wire:click="deleteVideo">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     @push('scripts')
         <script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js"></script>
         <script>
@@ -69,12 +93,14 @@
                 Livewire.hook('message.processed', (message, component) => {
                     const players = Array.from(document.querySelectorAll('.plyr__video-embed')).map(p => new Plyr(p));
                 });
-            });
 
-            Livewire.on('confirmDeletion', videoId => {
-                if (confirm('Are you sure you want to delete this video?')) {
-                    Livewire.emit('deleteVideo', videoId);
-                }
+                window.addEventListener('show-delete-modal', event => {
+                    $('#deleteModal').modal('show');
+                });
+
+                window.addEventListener('hide-delete-modal', event => {
+                    $('#deleteModal').modal('hide');
+                });
             });
         </script>
     @endpush

@@ -27,6 +27,7 @@ use App\Http\Livewire\Admin\Video\SELECTYEARVIDEO;
 use App\Http\Livewire\Admin\Video\VideoAddController;
 use App\Http\Livewire\Admin\Video\AddFreeVideo;
 use App\Http\Livewire\Admin\Video\ShowFreeVideos;
+use App\Http\Livewire\Admin\Video\EditFreeVideo;
 use App\Http\Livewire\Admin\Video\VideoEditController;
 use App\Http\Livewire\Admin\Video\ShowVideoComponent;
 use App\Http\Livewire\Admin\Video\ShowVideoDataComponent;
@@ -135,6 +136,7 @@ Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
   Route::get('add_year_video',SELECTYEARVIDEO::class)->name("select_year_video");
   Route::get('free/video/add',AddFreeVideo::class)->name("add_free_video");
   Route::get('free/video/show',ShowFreeVideos::class)->name("show_free_video");
+  Route::get('/admin/videos/free/edit/{video}', EditFreeVideo::class)->name('edit_free_video');
   Route::post('addvideo/{year}', [VideoAddController::class,'store']);
   Route::get('addvideo/{year}',VideoAddController::class)->name("add_video");
   Route::get('editvideo/{id_video}',VideoEditController::class)->name("edit_video");
