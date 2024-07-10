@@ -1,83 +1,87 @@
 <?php
-
 namespace App\Http\Livewire\Admin\Student;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
-use Illuminate\Http\Request;
-
+use Illuminate\Validation\ValidationException;
 
 class AddStudent extends Component
 {
-    public  $errorMessage, $code,$name,$year,$mobile_father,$case =null ,$mobile_phone;
+    public $errorMessage, $code, $name, $year, $mobile_father, $case = null, $mobile_phone;
+
     public function generateUniqueCode()
     {
-
         $characters = '0123456789';
         $charactersNumber = strlen($characters);
         $codeLength = 6;
 
-        $code = '';
+        do {
+            $code = '';
+            for ($i = 0; $i < $codeLength; $i++) {
+                $code .= $characters[rand(0, $charactersNumber - 1)];
+            }
+        } while (User::where('student_code', $code)->exists());
 
-        while (strlen($code) < 6) {
-            $position = rand(0, $charactersNumber - 1);
-            $character = $characters[$position];
-            $code = $code.$character;
-        }
-
-        if (User::where('student_code', $code)->exists()) {
-            $this->generateUniqueCode();
-        }
-
-        $this->code= $code;
+        $this->code = $code;
     }
-    public function store(Request $request)
+
+    public function store()
     {
         $validatedData = $this->validate([
             'name' => 'required|string|max:255',
-            'year' => 'required|string|in:users,year_type',
+            'year' => 'required|string|in:ONE,TWO,THREE',
             'mobile_father' => 'required|string|max:15',
             'code' => 'required|string|max:50',
             'mobile_phone' => 'required|string|size:11|unique:users,mobile_phone',
         ]);
-        try{
+
+        try {
             DB::beginTransaction();
+
             $new_user = new User();
             $new_user->name = $this->name;
             $new_user->year_type = $this->year;
             $new_user->mobile_father = $this->mobile_father;
             $new_user->student_code = $this->code;
-            $new_user->mobile_phone  = $this->mobile_phone;
-            $new_user->device_id =null;
-            $new_user->wallet =0 ;       //change this with device id
+            $new_user->mobile_phone = $this->mobile_phone;
+            $new_user->wallet = 0;
             $new_user->save();
-            $this->finish();
-            DB::commit(); // Commit the transaction if everything is successful
-            session()->flash("success_message","you add a new student");
-            return redirect()->route('student_search');
-        }catch (\Throwable $e) {
-            DB::rollBack();
-            $this->errorMessage = $e->getMessage(); // Get the error message
-        }
-        // dd($this->all());
-       
 
-       
+            $this->finish();
+            DB::commit();
+
+            session()->flash("success_message", "You have added a new student.");
+            return redirect()->route('student_search');
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            $this->errorMessage = $e->getMessage();
+        }
     }
+
     public function finish()
     {
-        $this->code=null;
-        $this->name=null;
-        $this->year=null;
-        $this->mobile_father=null;
-        $this->case=null;
+        $this->code = null;
+        $this->name = null;
+        $this->year = null;
+        $this->mobile_father = null;
+        $this->case = null;
+        $this->mobile_phone = null;
     }
+
     public function render()
     {
-        $table = 'users';
-        $column = 'case_reverse';
+        $enumOptions = $this->getEnumValues('users', 'case_reverse');
+        $year_type = $this->getEnumValues('users', 'year_type');
 
+        return view('livewire.admin.student.add-student', [
+            'enumOptions' => $enumOptions,
+            'year_type' => $year_type
+        ])->layout('layouts.admin');
+    }
+
+    private function getEnumValues($table, $column)
+    {
         $enumValues = DB::select(DB::raw("SHOW COLUMNS FROM $table WHERE Field = '$column'"))[0]->Type;
         preg_match('/^enum\((.*)\)$/', $enumValues, $matches);
         $enumOptions = [];
@@ -88,22 +92,7 @@ class AddStudent extends Component
                 return trim($value, "'");
             }, $enumOptions);
         }
-        $table = 'users';
-        $column = 'year_type';
 
-        $enumValues = DB::select(DB::raw("SHOW COLUMNS FROM $table WHERE Field = '$column'"))[0]->Type;
-        preg_match('/^enum\((.*)\)$/', $enumValues, $matches);
-        $year_type = [];
-
-        if (isset($matches[1])) {
-            $year_type = explode(',', $matches[1]);
-            $year_type = array_map(function ($value) {
-                return trim($value, "'");
-            }, $year_type);
-        }
-        return view('livewire.admin.student.add-student',
-        ['enumOptions'=>$enumOptions,
-        'year_type'=>$year_type
-        ])->layout('layouts.admin');
+        return $enumOptions;
     }
 }
