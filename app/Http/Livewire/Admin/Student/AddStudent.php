@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class AddStudent extends Component
 {
-    public $code,$name,$year,$mobile_father,$case =null ,$mobile_phone;
+    public  $errorMessage, $code,$name,$year,$mobile_father,$case =null ,$mobile_phone;
     public function generateUniqueCode()
     {
 
@@ -41,20 +41,29 @@ class AddStudent extends Component
             'code' => 'required|string|max:50',
             'mobile_phone' => 'required|string|size:11|unique:users,mobile_phone',
         ]);
+        try{
+            DB::beginTransaction();
+            $new_user = new User();
+            $new_user->name = $this->name;
+            $new_user->year_type = $this->year;
+            $new_user->mobile_father = $this->mobile_father;
+            $new_user->student_code = $this->code;
+            $new_user->mobile_phone  = $this->mobile_phone;
+            $new_user->device_id =null;
+            $new_user->wallet =0 ;       //change this with device id
+            $new_user->save();
+            $this->finish();
+            DB::commit(); // Commit the transaction if everything is successful
+            session()->flash("success_message","you add a new student");
+            return redirect()->route('student_search');
+        }catch (\Throwable $e) {
+            DB::rollBack();
+            $this->errorMessage = $e->getMessage(); // Get the error message
+        }
+        // dd($this->all());
+       
 
-        $new_user = new User();
-        $new_user->name = $this->name;
-        $new_user->year_type = $this->year;
-        $new_user->mobile_father = $this->mobile_father;
-        $new_user->student_code = $this->code;
-        $new_user->student_code = $this->code;
-        $new_user->mobile_phone  = $this->mobile_phone;
-        $new_user->device_id =null;
-        $new_user->wallet =0    ;       //change this with device id
-        $new_user->save();
-        $this->finish();
-        session()->flash("success_message","you add a new student");
-        return redirect()->route('student_search');
+       
     }
     public function finish()
     {

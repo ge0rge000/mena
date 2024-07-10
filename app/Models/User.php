@@ -26,10 +26,14 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'mobile_phone',
+        'student_code',
         'device_id',
         'year_type',
         'mobile_father',
         'wallet',
+        'utype',
+        'current_team_id',
+        'profile_photo_path'
     ];
 
     public function question()

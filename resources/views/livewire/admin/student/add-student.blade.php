@@ -2,6 +2,13 @@
     <div class="container pt-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
+            @if($errorMessage)
+                <div class="alert alert-danger">
+                    <ul>
+                            <li>{{ $errorMessage }}</li>
+                    </ul>
+                </div>
+            @endif
             @if(Session::has('success_message'))
                 <div class="alert alert-success">
                     {{Session::get('success_message')}}
