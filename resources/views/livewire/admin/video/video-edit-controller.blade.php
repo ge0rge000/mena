@@ -1,74 +1,68 @@
 <div>
-    <section id="basic-form-layouts">
-        <div class="row match-height">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <h4 class="card-title" id="basic-layout-form">Units</h4>
-                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                <div class="heading-elements">
-                  <ul class="list-inline mb-0">
-                    <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                    <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                    <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                    <li><a data-action="close"><i class="ft-x"></i></a></li>
-                  </ul>
-                </div>
+  <style>
+      span.error {
+          color: red;
+      }
+  </style>
+  <div class="container pt-4">
+      <div class="row justify-content-center">
+          <div class="col-md-8">
+              <div class="card">
+                  <div class="card-header text-center">
+                      <h5>Edit Video</h5>
+                  </div>
+
+                  <div class="card-body">
+                      <form wire:submit.prevent="update">
+                          <div class="mb-3">
+                              <label for="exampleFormControlInput1" class="form-label">Video Title</label>
+                              <input type="text" class="form-control" wire:model="title" id="exampleFormControlInput1" placeholder="Enter video title">
+                              @error('title')
+                                  <div class="alert alert-danger">{{ $message }}</div>
+                              @enderror
+                          </div>
+                          <div class="mb-3">
+                              <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                              <textarea class="form-control" wire:model="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+                              @error('description')
+                                  <div class="alert alert-danger">{{ $message }}</div>
+                              @enderror
+                          </div>
+                          <div>
+                              <label for="exampleFormControlInput1" class="form-label">Video Link</label>
+                              <input type="text" class="form-control" wire:model="link" id="exampleFormControlInput1" placeholder="Enter video link">
+                              @error('link')
+                                  <div class="alert alert-danger">{{ $message }}</div>
+                              @enderror
+                          </div>
+                          <div class="mt-3">
+                              <select class="form-select" aria-label="Default select example" wire:model="selectedUnit">
+                                  <option selected>Select Unit</option>
+                                  @foreach ($units as $unit)
+                                      <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                  @endforeach
+                              </select>
+                              @error('selectedUnit')
+                                  <div class="alert alert-danger">{{ $message }}</div>
+                              @enderror
+                          </div>
+                          <div class="mt-3">
+                              <select class="form-select" aria-label="Default select example" wire:model="selectedLecture">
+                                  <option selected>Select Lecture</option>
+                                  @foreach ($lectures as $lecture)
+                                      <option value="{{ $lecture->id }}">{{ $lecture->name }}</option>
+                                  @endforeach
+                              </select>
+                              @error('selectedLecture')
+                                  <div class="alert alert-danger">{{ $message }}</div>
+                              @enderror
+                          </div>
+                          <br><br>
+                          <button type="submit" class="btn btn-sm btn-block btn-danger">Update</button>
+                      </form>
+                  </div>
               </div>
-              <div class="card-content collapse show">
-                <div class="card-body">
-
-
-                    <div class="form-body">
-                      <h4 class="form-section"><i class="ft-user"></i> Unit Info</h4>
-                      <div class="card-body">
-                        <div class="form-group">
-                            <label for="projectinput1">Name video</label>
-                            <input type="text" id="name_video" class="form-control" placeholder="Name video"
-                            name="fname" wire:model="name_video">
-                          </div>
-                    </div>
-                    <div class="col-md-12">
-                        <label class="col-md-3 label-control" for="projectinput1"> image video</label>
-                        <div class="col-md-5">
-                        <input type="file" class="form-control"
-                        name="name_company" wire:model="image_video_new">
-                        </div>
-                        <br>
-                                @if($image_video_new)
-                                <img src="{{$image_video_new->temporaryUrl()}}" width="120px">
-                                @else
-                                <img src="{{ Storage::url('photos/' . $image_video) }}" width="100" height="100">
-                                @endif
-                              </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                            <br>
-                            <br>
-
-                            <button class="btn btn-primary" wire:click="edit_video">
-                                <i class="la la-check-square-o"></i> edit
-                              </button>
-                          </div>
-
-                          <div class="col-md-6">
-                            @if(Session::has("message"))
-
-                            <h1>{{ Session::get("message") }}</h1>
-                            @endif
-                          </div>
-                      </div>
-
-
-
-
-
-                    </div>
-
-                </div>
-              </div>
-            </div>
           </div>
-
-      </section>
+      </div>
+  </div>
 </div>

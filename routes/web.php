@@ -102,6 +102,7 @@ use App\Http\Livewire\Admin\StudentSubscribe\StudentWallet;
 
 //student Search
 use App\Http\Livewire\Admin\Student\StudentSearch;
+use App\Http\Livewire\Admin\Student\StudentEdit;
 
 //transactions
 use App\Http\Livewire\Admin\Transactions\TransactionIndex;
@@ -140,6 +141,7 @@ Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
   Route::get('show_videos/{year_type}',ShowVideoComponent::class)->name("show_video");
   Route::get("show_video_data/{ide}",ShowVideoDataComponent::class)->name("show_data_video");
   Route::get("lecture/videos",LectureVideos::class)->name("show_lecture_videos");
+  Route::get('/videos/edit/{id}', VideoEditController::class)->name('video_edit');
 
     //kamel
   Route::post('upload_video',[UploadVideoController::class,'uploadLargeFiles'])->name('upload.video');
@@ -177,6 +179,7 @@ Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
   Route::get('show_student/{year_type}',ShowStudentComponent::class)->name("show_student");
   Route::get('add_student',AddStudent::class)->name("add_student");
   Route::post('add_student',[AddStudent::class,'store'])->name("store_student");
+  Route::get('/students/edit/{id}', StudentEdit::class)->name('student_edit');
 
   Route::get('exams_student/{student_id}',ShowStudentExam::class)->name("student_all_exams");
   Route::get('choiceexams_student/{student_id}/{exam_id}',ShowStudentExamChoiceQuestion::class)->name("student_choice_exam");

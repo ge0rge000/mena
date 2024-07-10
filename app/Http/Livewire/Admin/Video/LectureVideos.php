@@ -37,6 +37,18 @@ class LectureVideos extends Component
         return isset($query['v']) ? 'https://www.youtube.com/embed/' . $query['v'] : null;
     }
 
+    public function deleteVideo($videoId)
+    {
+        $video = Video::findOrFail($videoId);
+        $video->delete();
+        $this->updated('lecture_id'); // Refresh the video list
+        session()->flash('message', 'Video deleted successfully.');
+    }
+    public function confirmDeletion($videoId)
+    {
+        $this->dispatchBrowserEvent('confirmDeletion', ['videoId' => $videoId]);
+    }
+    
     public function render()
     {
         return view('livewire.admin.video.lecture-videos')->layout('layouts.admin');

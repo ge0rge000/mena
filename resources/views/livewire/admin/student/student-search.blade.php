@@ -36,7 +36,7 @@
                             <td>{{ $user->mobile_father }}</td>
                             <td>{{ $user->wallet }}</td>
                             <td>
-                                <button class="btn btn-sm btn-primary" wire:click="editSubscription({{ $user->id }})">Edit</button>
+                                <a class="btn btn-sm btn-primary" href="{{route('student_edit',$user->id)}}">Edit</a>
                                 <button class="btn btn-sm btn-danger" wire:click="delete({{ $user->id }})">Delete</button>
                             </td>
                         </tr>

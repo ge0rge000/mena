@@ -45,7 +45,7 @@ class VideoAddController extends Component
     {
         // dd($this->title);
         $this->validate([
-            'link' => 'required',
+            'link' => 'required|url',
             'title' => 'required',
             'description' => 'nullable',
         ]);
@@ -55,7 +55,7 @@ class VideoAddController extends Component
         $new_video->link=$this->link;
         $new_video->lecture_id=$this->selectedLecture;
         $new_video->save();
-        return redirect()->route('lecture_index');
+        return redirect()->route('show_lecture_videos');
     }
     public function showVideo($id)
     {
@@ -65,6 +65,34 @@ class VideoAddController extends Component
         // Pass the video details to the view
         // return view('video.show', ['video' => $video]);
     }
+    
+    public function updated()
+    {
+        $this->units=Unit::where("year_type",$this->year)->get();
+        $this->lectures=Lecture::where('unit_id',$this->selectedUnit)->get();
+    }
+
+    public function render()
+    {
+        $this->case_video;
+        if($this->video_id != null){
+            $this->video = Video::findOrFail($this->video_id);
+        }else{
+
+            $this->video = Video::latest()->first();
+        }
+        if($this->video!=null){
+            $video_last_name=$this->video->name_video;
+        }else{
+            $video_last_name="no exist";
+        }
+        $fileId=$this->fileId;
+        return view('livewire.admin.video.video-add-controller',
+        [
+            'units'=>$this->units,'video_last_name'=>$video_last_name,'fileId'=>$fileId,'lectures'=>$this->lectures 
+        ])->layout('layouts.admin');
+    }
+
     public function unit_relate_video(){
 
         $this->validate();
@@ -98,31 +126,5 @@ class VideoAddController extends Component
         }
 
 
-    }
-    public function updated()
-    {
-        $this->units=Unit::where("year_type",$this->year)->get();
-        $this->lectures=Lecture::where('unit_id',$this->selectedUnit)->get();
-    }
-
-    public function render()
-    {
-        $this->case_video;
-        if($this->video_id != null){
-            $this->video = Video::findOrFail($this->video_id);
-        }else{
-
-            $this->video = Video::latest()->first();
-        }
-        if($this->video!=null){
-            $video_last_name=$this->video->name_video;
-        }else{
-            $video_last_name="no exist";
-        }
-        $fileId=$this->fileId;
-        return view('livewire.admin.video.video-add-controller',
-        [
-            'units'=>$this->units,'video_last_name'=>$video_last_name,'fileId'=>$fileId,'lectures'=>$this->lectures 
-        ])->layout('layouts.admin');
     }
 }
