@@ -22,6 +22,7 @@ class LectureEdit extends Component
         $this->unit_id=$lecture->unit_id;
         $this->description=$lecture->description;
         $this->status=$lecture->status;
+        $this->cost=$lecture->cost;
     }
     protected $rules = [
         'name' => 'required|min:3',

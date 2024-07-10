@@ -31,7 +31,8 @@ class LectureIndex extends Component
     {
         $lectures = Lecture::find($id);
         $lectures->delete();
-        return redirect()->back();
+        session()->flash('success', 'Lecture deleted successfully');
+        return redirect()->route('lecture_index');
     }
 
 }
