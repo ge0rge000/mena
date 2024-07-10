@@ -38,6 +38,6 @@ class StudentSearch extends Component
         $user=User::find($id);
         $user->delete();
         session()->flash('message', 'Student deleted successfully');
-        return redirect()->route('admin.student.index');
+        return redirect()->route('student_search');
     }
 }
