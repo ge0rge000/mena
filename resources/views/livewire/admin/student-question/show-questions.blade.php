@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card p-5">
     <h1 class="mb-4">Student Questions</h1>
     <table class="table">
         <thead>
