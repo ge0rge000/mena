@@ -107,6 +107,9 @@ use App\Http\Livewire\Admin\Student\StudentEdit;
 
 //transactions
 use App\Http\Livewire\Admin\Transactions\TransactionIndex;
+//Student Question &answers
+use App\Http\Livewire\Admin\StudentQuestion\ShowQuestions;
+use App\Http\Livewire\Admin\StudentQuestion\AnswerQuestion;
 
 use App\Http\Livewire\HOME;
 
@@ -233,6 +236,9 @@ Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
   //transactions
   Route::get('transactions',  TransactionIndex::class)->name('transactions');
 
+  //Student Question &answers
+  Route::get('/questions', ShowQuestions::class)->name('show-questions');
+  Route::get('/questions/{questionId}/answer', AnswerQuestion::class)->name('answer-question');
 });
 
 

@@ -234,7 +234,7 @@ data-open="click" data-menu="vertical-content-menu" data-col="2-columns">
                 <span data-i18n="nav.category.layouts">Exams</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip"
                 data-placement="right" data-original-title="Layouts"></i>
               </li>
-            <li class=" nav-item"><a href=""><i class="lla la-files-o"></i><span class="menu-title" data-i18n="nav.dash.main">Exams</span></a>
+              <li class=" nav-item"><a href=""><i class="lla la-files-o"></i><span class="menu-title" data-i18n="nav.dash.main">Exams</span></a>
                 <ul class="menu-content">
                   <li class="{{ Route::currentRouteName() == "select_year_exam" ? 'active':'' }}"><a class="menu-item" href="{{ route("select_year_exam") }}" data-i18n="nav.dash.ecommerce">add exam</a>
                   </li>
@@ -257,7 +257,7 @@ data-open="click" data-menu="vertical-content-menu" data-col="2-columns">
                 <span data-i18n="nav.category.layouts">Students</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip"
                 data-placement="right" data-original-title="Layouts"></i>
               </li>
-            <li class=" nav-item"><a href="index.html"><i class="la la-male"></i><span class="menu-title" data-i18n="nav.dash.main">Students</span></a>
+              <li class=" nav-item"><a href="index.html"><i class="la la-male"></i><span class="menu-title" data-i18n="nav.dash.main">Students</span></a>
                 <ul class="menu-content">
                   <?php
                           $url="http://127.0.0.1:8000";
@@ -277,12 +277,11 @@ data-open="click" data-menu="vertical-content-menu" data-col="2-columns">
                 </ul>
               </li>
 
-
               <li class=" navigation-header">
                 <span data-i18n="nav.category.layouts">Questions</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip"
                 data-placement="right" data-original-title="Layouts"></i>
               </li>
-            <li class=" nav-item"><a href="index.html"><i class="la la-question"></i><span class="menu-title" data-i18n="nav.dash.main">Questions</span></a>
+              <li class=" nav-item"><a href="index.html"><i class="la la-question"></i><span class="menu-title" data-i18n="nav.dash.main">Questions</span></a>
                 <ul class="menu-content">
                   <?php
                           $url="http://127.0.0.1:8000";
@@ -293,21 +292,32 @@ data-open="click" data-menu="vertical-content-menu" data-col="2-columns">
                   </li>
                   <li class="{{ Route::currentRouteName() == "admoney_block" ? 'active':'' }}"><a class="menu-item" href="{{ route("admoney_block") }}" data-i18n="nav.dash.ecommerce">add Block</a>
                   </li>
-                   <ul class="menu-content">
-                  <?php
-                          $url="http://127.0.0.1:8000";
-                  ?>
-                  <li class="{{ url()->current() == "$url/moneyshowquestuion/ONE" ? 'active':'' }}"><a class="menu-item" href="{{ route("moneyshowquestuion",['year_type'=>"ONE"]) }}" data-i18n="nav.dash.ecommerce">First grade secondary</a>
-                  </li>
+                  <ul class="menu-content">
+                    <?php
+                            $url="http://127.0.0.1:8000";
+                    ?>
+                    <li class="{{ url()->current() == "$url/moneyshowquestuion/ONE" ? 'active':'' }}"><a class="menu-item" href="{{ route("moneyshowquestuion",['year_type'=>"ONE"]) }}" data-i18n="nav.dash.ecommerce">First grade secondary</a>
+                    </li>
 
-                  <li class="{{ url()->current() == "$url/moneyshowquestuion/TWO" ? 'active':'' }}"><a class="menu-item" href="{{ route("moneyshowquestuion",['year_type'=>"TWO"]) }}" data-i18n="nav.dash.ecommerce">Secound grade secondary</a>
-                  </li>
+                    <li class="{{ url()->current() == "$url/moneyshowquestuion/TWO" ? 'active':'' }}"><a class="menu-item" href="{{ route("moneyshowquestuion",['year_type'=>"TWO"]) }}" data-i18n="nav.dash.ecommerce">Secound grade secondary</a>
+                    </li>
 
-                  <li class="{{ url()->current() == "$url/moneyshowquestuion/THREE" ? 'active':'' }}"><a class="menu-item" href="{{ route("moneyshowquestuion",['year_type'=>"THREE"]) }}" data-i18n="nav.dash.ecommerce">Third grade secondary</a>
-                  </li>
+                    <li class="{{ url()->current() == "$url/moneyshowquestuion/THREE" ? 'active':'' }}"><a class="menu-item" href="{{ route("moneyshowquestuion",['year_type'=>"THREE"]) }}" data-i18n="nav.dash.ecommerce">Third grade secondary</a>
+                    </li>
+                  </ul>
+
+
                 </ul>
+              </li>
 
-
+              <li class=" navigation-header"> 
+                <span data-i18n="nav.category.layouts">Questions & Answers</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip"
+                data-placement="right" data-original-title="Layouts"></i>
+              </li>
+              <li class=" nav-item"><a href="index.html"><i class="fas fa-credit-card"></i><span class="menu-title" data-i18n="nav.dash.main">Students Questions</span></a>
+                <ul class="menu-content">
+                  <li class="{{ Route::currentRouteName() == "show-questions" ? 'active':'' }}"><a class="menu-item" href="{{ route("show-questions") }}" data-i18n="nav.dash.ecommerce">Add Subscribtions </a>
+                  </li>
                 </ul>
               </li>
 
@@ -315,7 +325,7 @@ data-open="click" data-menu="vertical-content-menu" data-col="2-columns">
                 <span data-i18n="nav.category.layouts">Slider</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip"
                 data-placement="right" data-original-title="Layouts"></i>
               </li>
-            <li class=" nav-item"><a href=""><i class="la la-sliders"></i><span class="menu-title" data-i18n="nav.dash.main">Slider</span></a>
+              <li class=" nav-item"><a href=""><i class="la la-sliders"></i><span class="menu-title" data-i18n="nav.dash.main">Slider</span></a>
                 <ul class="menu-content">
                   <?php
                           $url="http://127.0.0.1:8000";
@@ -335,7 +345,7 @@ data-open="click" data-menu="vertical-content-menu" data-col="2-columns">
                 <span data-i18n="nav.category.layouts">Document</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip"
                 data-placement="right" data-original-title="Layouts"></i>
               </li>
-            <li class=" nav-item"><a href=""><i class="fa fa-file" aria-hidden="true"></i><span class="menu-title" data-i18n="nav.dash.main">Documents</span></a>
+              <li class=" nav-item"><a href=""><i class="fa fa-file" aria-hidden="true"></i><span class="menu-title" data-i18n="nav.dash.main">Documents</span></a>
                 <ul class="menu-content">
                   <?php
                           $url="http://127.0.0.1:8000";

@@ -17,7 +17,7 @@ class CreateQuestionChoicesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('exam_id');
             $table->foreign('exam_id')->references('id')->on('exams')->onDelete('cascade');
-            $table->string('question');
+            $table->text('question');
             $table->char('a');
             $table->char('b');
             $table->char('c');
