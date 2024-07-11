@@ -316,7 +316,7 @@ data-open="click" data-menu="vertical-content-menu" data-col="2-columns">
               </li>
               <li class=" nav-item"><a href="index.html"><i class="fas fa-credit-card"></i><span class="menu-title" data-i18n="nav.dash.main">Students Questions</span></a>
                 <ul class="menu-content">
-                  <li class="{{ Route::currentRouteName() == "show-questions" ? 'active':'' }}"><a class="menu-item" href="{{ route("show-questions") }}" data-i18n="nav.dash.ecommerce">Add Subscribtions </a>
+                  <li class="{{ Route::currentRouteName() == "show-questions" ? 'active':'' }}"><a class="menu-item" href="{{ route("show-questions") }}" data-i18n="nav.dash.ecommerce">All Questions </a>
                   </li>
                 </ul>
               </li>
